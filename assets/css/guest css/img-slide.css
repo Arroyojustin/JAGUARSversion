@@ -1,0 +1,89 @@
+/* Title styling */
+.text-center {
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Logo Container Styling */
+.sport-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 140px;
+    position: relative;
+}
+
+/* Logo Wrapper Styling */
+.logo-wrapper {
+    text-align: center;
+}
+
+/* Logo Styling */
+.logo-image {
+    width: 200px;
+    height: auto;
+    margin: 0 20px;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Sport Name Styling */
+.sport-name {
+    margin-top: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #495057;
+    transition: opacity 0.5s ease;
+}
+
+/* Fade Animations */
+.logo-image.fade-out,
+.sport-name.fade-out {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.logo-image.fade-in,
+.sport-name.fade-in {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Navigation Arrows Styling */
+.sport-logo-container .arrow {
+    font-size: 2.5rem;
+    color: #495057;
+    cursor: pointer;
+    margin: 0 20px; /* Space between arrows and the logo */
+    transition: color 0.3s ease;
+}
+
+
+/* Button Group Styling */
+.sport-button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    position: fixed;
+    bottom: 55px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Button Styling */
+.sport-button-container .btn {
+    padding: 10px 20px;
+    font-size: 1.4rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .sport-logo-container {
+        flex-direction: row; /* Ensure horizontal alignment on smaller screens */
+    }
+
+    .sport-button-container {
+        flex-direction: row;
+        justify-content: center;
+        gap: 20px;
+    }
+}

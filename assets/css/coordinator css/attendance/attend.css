@@ -1,0 +1,108 @@
+/* General styles */
+.attendance-container {
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
+}
+
+/* Attendance Section */
+.calendar-info {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.calendar-icon {
+    font-size: 1.2rem;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+/* Badge Circle Styles */
+.badge {
+    border-radius: 50%;
+    width: 30px; /* Adjust the size as needed */
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    padding: 0;
+    text-align: center;
+    line-height: 1.5; /* Ensures the text is centered vertically */
+}
+
+.badge-circle {
+    padding: 10px;
+}
+
+/* Student name style */
+.student-name {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+/* Responsive styles for form elements */
+@media (max-width: 768px) {
+    #categorySelect, #statusSelect, #studentName {
+        font-size: 0.9rem; /* Adjust font size */
+    }
+
+    .calendar-icon {
+        font-size: 1rem; /* Adjust icon size for mobile */
+        margin: 0 3px; /* Adjust margin for mobile */
+    }
+
+    .badge {
+        width: 25px; /* Adjust the size for mobile */
+        height: 25px;
+        font-size: 0.9rem;
+        line-height: 1.3; /* Ensures the text is centered vertically for mobile */
+    }
+}
+
+.new-card-container {
+    position: fixed;
+    bottom: 0;
+    right: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.new-card {
+    width: 100%;
+    max-width: 320px;
+    margin: 2px 5px;
+    height: 70px;
+    border-radius: 5px;
+}
+
+.new-card-body {
+    padding: 16px;
+}
+
+.new-card-title {
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.new-card-text {
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* Specific style for the "Total Students" card */
+.new-card-total {
+    background-color: rgba(89, 89, 89, 1);
+    color: white;
+}
+
+/* Profile photo styles */
+.profile-photo {
+    width: 40px; /* Adjust size as needed */
+    height: 40px;
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover; /* Ensures the image scales properly */
+    border: 2px solid #ddd; /* Optional: Adds a border around the image */
+}

@@ -1,0 +1,25 @@
+#qqr {
+  text-align: center;
+}
+.qr-heading {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+#result {
+  margin-top: 20px;
+  font-size: 16px;
+}
+#result-value {
+  padding: 10px;
+  border: 1px solid #ccc;
+  background: #e9ecef;
+  border-radius: 5px;
+  display: inline-block;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+#error-message {
+  color: red;
+  margin-top: 20px;
+}
