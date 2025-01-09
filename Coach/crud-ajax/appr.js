@@ -44,7 +44,12 @@ function approveStudent(requirementsId) {
         .then(data => {
             if (data.success) {
                 alert("Student approved successfully!");
-                location.reload();
+
+                // Remove the student name from the requirements container
+                const studentElement = document.getElementById(`student-${requirementsId}`);
+                if (studentElement) {
+                    studentElement.remove();
+                }
             } else {
                 alert("Error approving student: " + data.error);
             }
@@ -54,3 +59,4 @@ function approveStudent(requirementsId) {
         });
     }
 }
+

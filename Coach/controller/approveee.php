@@ -9,7 +9,7 @@ if (!$requirementsId) {
     exit;
 }
 
-// Fetch the student details from the requirements table
+// Fetch student details from requirements table
 $sql = "SELECT * FROM requirements WHERE id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $requirementsId);
@@ -22,26 +22,26 @@ if (!$student) {
     exit;
 }
 
-// Ensure the requirements ID exists in the submitted table before inserting into approvals
-$sql = "SELECT requirements_id FROM submitted WHERE requirements_id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $requirementsId);
-$stmt->execute();
-$submittedResult = $stmt->get_result();
+// Check if the student is already approved
+$checkSql = "SELECT id FROM approvals WHERE id = ?";
+$checkStmt = $conn->prepare($checkSql);
+$checkStmt->bind_param("i", $requirementsId);
+$checkStmt->execute();
+$checkResult = $checkStmt->get_result();
 
-if ($submittedResult->num_rows === 0) {
-    echo json_encode(["success" => false, "error" => "Requirements ID not found in submitted records."]);
+if ($checkResult->num_rows > 0) {
+    echo json_encode(["success" => false, "error" => "Student already approved."]);
     exit;
 }
 
-// Insert the student details into the approvals table
+// Insert student details into the approvals table
 $sql = "INSERT INTO approvals 
     (id, first_name, middle_initial, last_name, gender, sport_id, height, weight, bmi, phone_number, health_protocol, status) 
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'approved')";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param(
     "isssiiiddss", 
-    $requirementsId, // Matches the id column in approvals and foreign key in submitted
+    $requirementsId, // Matches the id column in approvals and foreign key in requirements
     $student['first_name'], 
     $student['middle_initial'], 
     $student['last_name'], 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 09, 2025 at 02:00 AM
+-- Generation Time: Jan 09, 2025 at 08:18 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,6 +42,13 @@ CREATE TABLE `approvals` (
   `approved_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `status` enum('approved','rejected') NOT NULL DEFAULT 'approved'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `approvals`
+--
+
+INSERT INTO `approvals` (`id`, `first_name`, `middle_initial`, `last_name`, `gender`, `sport_id`, `height`, `weight`, `bmi`, `phone_number`, `health_protocol`, `approved_at`, `status`) VALUES
+(27, 'Jedan', 'A', 'Esteron', '', 18, 167.00, 54.00, 19.36, '09888888888', 'None', '2025-01-09 06:58:58', 'approved');
 
 -- --------------------------------------------------------
 
@@ -107,20 +114,22 @@ INSERT INTO `sports` (`id`, `sport_name`, `positions`, `logo`) VALUES
 --
 
 CREATE TABLE `submitted` (
-  `requirements_id` int(11) NOT NULL
+  `requirements_id` int(11) NOT NULL,
+  `status` enum('pending','approved','rejected') DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `submitted`
 --
 
-INSERT INTO `submitted` (`requirements_id`) VALUES
-(27),
-(28),
-(29),
-(33),
-(35),
-(36);
+INSERT INTO `submitted` (`requirements_id`, `status`) VALUES
+(27, 'approved'),
+(28, 'approved'),
+(29, 'approved'),
+(33, 'pending'),
+(35, 'approved'),
+(36, 'pending'),
+(38, 'pending');
 
 -- --------------------------------------------------------
 
@@ -203,7 +212,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `approvals`
 --
 ALTER TABLE `approvals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `requirements`
@@ -221,7 +230,7 @@ ALTER TABLE `sports`
 -- AUTO_INCREMENT for table `submitted`
 --
 ALTER TABLE `submitted`
-  MODIFY `requirements_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `requirements_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -232,6 +241,12 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `approvals`
+--
+ALTER TABLE `approvals`
+  ADD CONSTRAINT `approvals_ibfk_1` FOREIGN KEY (`id`) REFERENCES `submitted` (`requirements_id`);
 
 --
 -- Constraints for table `submitted`

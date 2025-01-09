@@ -1,0 +1,14 @@
+Array
+(
+    [id] => 27
+    [first_name] => Jedan
+    [middle_initial] => A
+    [last_name] => Esteron
+    [gender] => male
+    [sport_id] => 18
+    [height] => 167.00
+    [weight] => 54.00
+    [bmi] => 19.36
+    [phone_number] => 09888888888
+    [health_protocol] => None
+)
