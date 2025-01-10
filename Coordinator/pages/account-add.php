@@ -17,6 +17,26 @@ function fetchSportsCategories($conn) {
         return '<option>No sports available</option>';
     }
 }
+
+// Function to fetch approved students
+function fetchApprovedStudents($conn) {
+    $sql = "SELECT id, first_name, middle_initial, last_name FROM approvals WHERE status = 'approved'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $buttons = '<div class="d-flex flex-column">';
+        while ($row = $result->fetch_assoc()) {
+            $fullName = htmlspecialchars($row['first_name']) . ' ' .
+                        (!empty($row['middle_initial']) ? htmlspecialchars($row['middle_initial']) . '. ' : '') .
+                        htmlspecialchars($row['last_name']);
+            $buttons .= '<button class="btn btn-outline-secondary mb-2" data-id="' . htmlspecialchars($row['id']) . '">' . $fullName . '</button>';
+        }
+        $buttons .= '</div>';
+        return $buttons;
+    } else {
+        return '<p>No approved students yet.</p>';
+    }
+}
 ?>
 
 <div class="container-fluid p-0 m-0" id="adds" style="display: none;">
@@ -29,17 +49,17 @@ function fetchSportsCategories($conn) {
                     
                     <!-- Sport Category Dropdown -->
                     <div class="mb-3">
-                        <label for="sportCategory" class="form-label"></label>
+                        <label for="sportCategory" class="form-label">Select Sport Category</label>
                         <select class="form-select" id="sportCategory" aria-label="Select Sport Category">
                             <option selected disabled>Choose sport</option>
                             <?php echo fetchSportsCategories($conn); // Fetch and display sports dynamically ?>
                         </select>
                     </div>
 
-                    <!-- Placeholder for approved students (if required) -->
-                    <ul style="list-style-type: none; padding-left: 0;">
-                        <li>No approved students yet.</li>
-                    </ul>
+                    <!-- Approved Students List -->
+                    <div class="approved-students">
+                        <?php echo fetchApprovedStudents($conn); // Fetch and display approved student buttons ?>
+                    </div>
                 </div>
             </div>
 
@@ -51,7 +71,7 @@ function fetchSportsCategories($conn) {
                     <!-- QR Code Generator Form -->
                     <form id="qrCodeForm">
                         <div class="mb-3">
-                            <label for="studentQRInput" class="form-label"></label>
+                            <label for="studentQRInput" class="form-label">Enter Student No. or Name</label>
                             <input type="text" class="form-control" id="studentQRInput" placeholder="Enter Student No. or Name">
                         </div>
                         
@@ -108,7 +128,6 @@ function fetchSportsCategories($conn) {
 </div>
 
 <!-- Include QRCode.js for QR Code Generation -->
-
 <script>
     document.getElementById('generateQRButton').addEventListener('click', function () {
         const input = document.getElementById('studentQRInput').value;
