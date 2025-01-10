@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 09, 2025 at 08:18 AM
+-- Generation Time: Jan 10, 2025 at 07:47 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -48,7 +48,10 @@ CREATE TABLE `approvals` (
 --
 
 INSERT INTO `approvals` (`id`, `first_name`, `middle_initial`, `last_name`, `gender`, `sport_id`, `height`, `weight`, `bmi`, `phone_number`, `health_protocol`, `approved_at`, `status`) VALUES
-(27, 'Jedan', 'A', 'Esteron', '', 18, 167.00, 54.00, 19.36, '09888888888', 'None', '2025-01-09 06:58:58', 'approved');
+(37, 'MA Concepcion', '.', 'Arroyo', '', 17, 165.00, 55.00, 20.20, '0935252525252', 'Mataba', '2025-01-10 05:47:52', 'approved'),
+(40, 'Stephen', 'W', 'Curry', '', 16, 0.00, 0.00, 0.00, '09369007677', 'wala lang', '2025-01-10 01:08:41', 'approved'),
+(41, 'Kyrie', 'D', 'Irving', '', 19, 0.00, 0.00, 0.00, '0906837106', 'None', '2025-01-10 00:31:36', 'approved'),
+(44, 'Justin', 'M', 'Arroyo', '', 16, 0.00, 0.00, 0.00, '09068377106', 'None', '2025-01-10 05:47:32', 'approved');
 
 -- --------------------------------------------------------
 
@@ -75,14 +78,10 @@ CREATE TABLE `requirements` (
 --
 
 INSERT INTO `requirements` (`id`, `first_name`, `middle_initial`, `last_name`, `gender`, `sport_id`, `height`, `weight`, `bmi`, `phone_number`, `health_protocol`) VALUES
-(27, 'Jedan', 'A', 'Esteron', 'male', 18, 167.00, 54.00, 19.36, '09888888888', 'None'),
-(28, 'Sharlene ', 'S', 'Flaviano', 'female', 17, 155.00, 62.00, 25.81, '0906837106', 'pike'),
-(29, 'Justin', 'M', 'Arroyo', 'male', 19, 167.00, 57.00, 20.44, '0936363263', 'Tumataba na'),
-(33, 'Aron', 'D', 'Esteron', 'male', 17, 0.00, 0.00, 0.00, '0906837106', 'None'),
-(35, 'Satoru', 'M', 'Gojo', 'male', 18, 0.00, 0.00, 0.00, '09367957034', 'hati katawan'),
-(36, 'Randy', 'B', 'Arroyo', 'male', 16, 168.00, 59.00, 20.90, '09396765352', 'None'),
 (37, 'MA Concepcion', '.', 'Arroyo', 'female', 17, 165.00, 55.00, 20.20, '0935252525252', 'Mataba'),
-(38, 'Albert', 'D', 'Alias', 'male', 16, 0.00, 0.00, 0.00, '09367957034', 'None');
+(40, 'Stephen', 'W', 'Curry', 'male', 16, 0.00, 0.00, 0.00, '09369007677', 'wala lang'),
+(41, 'Kyrie', 'D', 'Irving', 'male', 19, 0.00, 0.00, 0.00, '0906837106', 'None'),
+(44, 'Justin', 'M', 'Arroyo', 'male', 16, 0.00, 0.00, 0.00, '09068377106', 'None');
 
 -- --------------------------------------------------------
 
@@ -123,13 +122,10 @@ CREATE TABLE `submitted` (
 --
 
 INSERT INTO `submitted` (`requirements_id`, `status`) VALUES
-(27, 'approved'),
-(28, 'approved'),
-(29, 'approved'),
-(33, 'pending'),
-(35, 'approved'),
-(36, 'pending'),
-(38, 'pending');
+(37, 'approved'),
+(40, 'approved'),
+(41, 'approved'),
+(44, 'approved');
 
 -- --------------------------------------------------------
 
@@ -177,7 +173,8 @@ INSERT INTO `users` (`id`, `lastname`, `firstname`, `middle_initial`, `student_n
 -- Indexes for table `approvals`
 --
 ALTER TABLE `approvals`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_approvals_sport_id` (`sport_id`);
 
 --
 -- Indexes for table `requirements`
@@ -212,13 +209,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `approvals`
 --
 ALTER TABLE `approvals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `requirements`
 --
 ALTER TABLE `requirements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `sports`
@@ -230,7 +227,7 @@ ALTER TABLE `sports`
 -- AUTO_INCREMENT for table `submitted`
 --
 ALTER TABLE `submitted`
-  MODIFY `requirements_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `requirements_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -246,7 +243,8 @@ ALTER TABLE `users`
 -- Constraints for table `approvals`
 --
 ALTER TABLE `approvals`
-  ADD CONSTRAINT `approvals_ibfk_1` FOREIGN KEY (`id`) REFERENCES `submitted` (`requirements_id`);
+  ADD CONSTRAINT `approvals_ibfk_1` FOREIGN KEY (`id`) REFERENCES `submitted` (`requirements_id`),
+  ADD CONSTRAINT `fk_approvals_sport_id` FOREIGN KEY (`sport_id`) REFERENCES `sports` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `submitted`
