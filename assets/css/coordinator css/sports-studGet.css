@@ -1,14 +1,12 @@
 .approved-students {
-    max-height: 300px;     /* Set a maximum height for the container */
+    max-height: 150px;     /* Set a maximum height for the container */
     overflow-y: auto;      /* Enable vertical scrolling when content exceeds max-height */
     overflow-x: hidden;    /* Disable horizontal scroll */
     display: flex;
     flex-direction: column;
-    gap: 5px;             /* Space between buttons */
+    gap: 3px;             /* Space between buttons */
 }
 
 .approved-students .btn {
     width: 98%;           /* Ensure buttons take up the full width of the container */
-    margin-bottom: 5px;    /* Add margin between buttons */
-    box-sizing: border-box;/* Prevent button from expanding outside the container */
 }
