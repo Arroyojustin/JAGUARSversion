@@ -46,12 +46,19 @@ $(document).ready(function() {
     
                     if (response.success && response.students.length > 0) {
                         $.each(response.students, function(index, student) {
-                            approvedStudentsContainer.append(
-                                $('<button>', {
-                                    class: 'btn btn-md btn-outline-secondary m-1',
-                                    text: student.first_name + ' ' + student.last_name,
-                                })
-                            );
+                            var studentName = student.first_name + ' ' + student.last_name;
+
+                            // Append student button
+                            var studentButton = $('<button>', {
+                                class: 'btn btn-md btn-outline-secondary m-1',
+                                text: studentName,
+                                click: function() {
+                                    // Populate the input field with the student's name
+                                    $('#studentQRInput').val(studentName);
+                                }
+                            });
+
+                            approvedStudentsContainer.append(studentButton);
                         });
                     } else {
                         approvedStudentsContainer.append('<p>No students found for this sport.</p>');
