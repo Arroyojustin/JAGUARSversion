@@ -112,6 +112,7 @@ header("Pragma: no-cache");
     <script src="function/required.js"></script>
 
     <script src="function/get-sports.js"></script>
+    <script src="function/get-qr.js"></script>
     <!--END::CRUD AJAX FUNCTIONS-->
 </body>
 </html>

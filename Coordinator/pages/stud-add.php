@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         document.getElementById('bmi').value = data.bmi;
 
                         // Populate the sport category dropdown
-                        const sportCategorySelect = document.getElementById('sportCategory');
+                        const sportCategorySelect = document.getElementById('sportCategory1');
                         sportCategorySelect.innerHTML = ''; // Clear any existing options
                         const option = document.createElement('option');
                         option.value = data.sport_id;

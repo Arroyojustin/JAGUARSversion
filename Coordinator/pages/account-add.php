@@ -20,7 +20,7 @@
                     <h5 class="card-title underline mb-3" style="border-bottom: 1px solid #000;">Student QR Code Generator</h5>
                     <form id="qrCodeForm">
                         <div class="mb-3">
-                            <label for="studentQRInput" class="form-label">Enter Student No. or Name</label>
+                            <label for="studentQRInput" class="form-label"></label>
                             <input type="text" class="form-control" id="studentQRInput" placeholder="Enter Student No. or Name">
                         </div>
                         <button type="button" class="btn btn-outline-primary" id="generateQRButton">Generate QR Code</button>
