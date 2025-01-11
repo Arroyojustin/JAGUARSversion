@@ -75,7 +75,7 @@ if ($result->num_rows > 0) {
                                 </div>
                                 <div class="col-md-4">
                                     <label for="sportCategory" class="form-label">Sport Category</label>
-                                    <select class="form-select" id="sportCategory" required disabled>
+                                    <select class="form-select" id="sportCategory1" required disabled>
                                         <option value="" disabled selected>Select a Category</option>
                                     </select>
                                 </div>
