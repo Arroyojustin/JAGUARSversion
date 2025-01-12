@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    // Handle QR code generation and enabling inputs
     $('#generateQRButton').on('click', function () {
         // Get the input value for the QR code
         const studentName = $('#studentQRInput').val();
@@ -8,6 +9,9 @@ $(document).ready(function () {
             alert('Please enter a name to generate the QR Code.');
             return;
         }
+
+        // Enable all inputs and the Add Student button in the Student Account form
+        $('#coachForm input, #addStudentButton').prop('disabled', false);
 
         // Clear any existing QR code
         $('#qrCodeDisplay').empty();
