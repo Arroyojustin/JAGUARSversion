@@ -1,7 +1,7 @@
 <div class="container-fluid p-0 m-0" id="adds" style="display: none;">
     <div class="row">
         <div class="col-md-6">
-            <div class="card shadow-container mb-4">
+            <div class="card mb-4">
                 <div class="card-body">
                     <h5 class="card-title underline mb-3" style="border-bottom: 1px solid #000;">Approved</h5>
                     <div class="mb-3">
@@ -15,24 +15,37 @@
                     </div>
                 </div>
             </div>
-            <div class="card shadow-container">
-                <div class="card-body">
-                    <h5 class="card-title underline mb-3" style="border-bottom: 1px solid #000;">Student QR Code Generator</h5>
-                    <form id="qrCodeForm">
-                        <div class="mb-3">
-                            <label for="studentQRInput" class="form-label"></label>
-                            <input type="text" class="form-control" id="studentQRInput" placeholder="Enter Student No. or Name">
-                        </div>
-                        <button type="button" class="btn btn-outline-primary" id="generateQRButton">Generate QR Code</button>
-                    </form>
-                    <div id="qrCodeDisplay" class="mt-4 text-center">
-                        <p>No QR Code generated yet.</p>
-                    </div>
-                </div>
-            </div>
+                <div class="card">
+  <div class="card-body text-center">
+    <h5 class="card-title mb-4" style="font-weight: bold;">Student QR Code</h5>
+    <form id="qrCodeForm">
+      <div class="mb-3">
+        <label for="studentQRInput" class="form-label" style="font-weight: bold;">Name <span style="color: red;">*</span></label>
+        <input
+          type="text"
+          class="form-control text-center"
+          id="studentQRInput"
+          style="border: 1px solid #ccc; border-radius: 5px;"
+        >
+      </div>
+      <button
+        type="button"
+        class="btn btn-primary btn-lg"
+        id="generateQRButton"
+        style="background-color: #007bff; border: none; border-radius: 5px; font-size: 1.2rem;"
+      >
+        GENERATE 
+      </button>
+    </form>
+    <div id="qrCodeDisplay" class="mt-4 text-center">
+      <!-- The QR Code will be dynamically generated here -->
+      <p class="text-muted">No QR Code generated yet.</p>
+    </div>
+  </div>
+</div>
         </div>
         <div class="col-md-6">
-            <div class="card shadow-container">
+            <div class="card">
                 <div class="card-body">
                     <h5 class="card-title underline mb-2" style="border-bottom: 1px solid #000;">Student Account</h5>
                     <form id="coachForm">
