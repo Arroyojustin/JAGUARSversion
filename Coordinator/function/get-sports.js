@@ -1,73 +1,67 @@
 $(document).ready(function() {
-    // Fetch sports data using AJAX
+    // Fetch sports
     $.ajax({
-        url: 'controller/get-sports.php', // URL of your PHP script
+        url: 'controller/get-sports.php',
         method: 'GET',
         dataType: 'json',
         success: function(response) {
             var sportCategory = $('#sportCategory');
-            sportCategory.empty(); // Clear existing options
+            sportCategory.empty();
 
-            // Check if the response was successful and contains sports
             if (response.success && response.sports && response.sports.length > 0) {
                 sportCategory.append('<option selected disabled>Choose sport</option>');
-
-                // Loop through the sports data and append options to the select element
-                $.each(response.sports, function(index, sport) {
-                    sportCategory.append(
-                        $('<option>', {
-                            value: sport,  // Use sport name as the value
-                            text: sport    // Use sport name as the display text
-                        })
-                    );
+                response.sports.forEach(function(sport) {
+                    sportCategory.append(new Option(sport, sport));
                 });
             } else {
                 sportCategory.append('<option selected disabled>No sports available</option>');
             }
         },
-        error: function(xhr, status, error) {
-            console.error('Error fetching sports:', error);
+        error: function() {
+            console.error('Error fetching sports');
         }
     });
 
-    // Fetch students based on the selected sport
+    // Fetch students based on selected sport
     $('#sportCategory').change(function() {
-        var sportName = $(this).val(); // Get selected sport name
-    
+        var sportName = $(this).val();
+
         if (sportName) {
             $.ajax({
-                url: 'controller/sports-studGet.php', // PHP script to fetch students
+                url: 'controller/sports-studGet.php',
                 method: 'POST',
                 data: { sport_name: sportName },
                 dataType: 'json',
                 success: function(response) {
-                    var approvedStudentsContainer = $('.approved-students');
-                    approvedStudentsContainer.empty(); // Clear previous students
-    
-                    if (response.success && response.students.length > 0) {
-                        $.each(response.students, function(index, student) {
-                            var studentName = student.first_name + ' ' + student.last_name;
+                    var approvedStudents = $('.approved-students');
+                    approvedStudents.empty();
 
-                            // Append student button
-                            var studentButton = $('<button>', {
+                    if (response.success && response.students.length > 0) {
+                        response.students.forEach(function(student) {
+                            var studentName = student.first_name + ' ' + student.last_name;
+                            var button = $('<button>', {
                                 class: 'btn btn-md btn-outline-secondary m-1',
                                 text: studentName,
                                 click: function() {
-                                    // Populate the input field with the student's name
                                     $('#studentQRInput').val(studentName);
                                 }
                             });
-
-                            approvedStudentsContainer.append(studentButton);
+                            approvedStudents.append(button);
                         });
                     } else {
-                        approvedStudentsContainer.append('<p>No students found for this sport.</p>');
+                        approvedStudents.append('<p>No students found for this sport.</p>');
                     }
                 },
-                error: function(xhr, status, error) {
-                    console.error('Error fetching students:', error);
+                error: function() {
+                    console.error('Error fetching students');
                 }
             });
         }
+    });
+
+    // Enable inputs when QR code is generated
+    $('#generateQRButton').click(function() {
+        $('#studentNo, #studentEmail, #studentPassword').prop('disabled', false);
+        $('#addStudentButton').prop('disabled', false);
     });
 });
