@@ -11,7 +11,7 @@ $(document).ready(function () {
         }
 
         // Enable all inputs and the Add Student button in the Student Account form
-        $('#coachForm input, #addStudentButton').prop('disabled', false);
+        $('#studentForm input, #addStudentButton').prop('disabled', false);
 
         // Clear any existing QR code
         $('#qrCodeDisplay').empty();

@@ -48,7 +48,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title underline mb-2" style="border-bottom: 1px solid #000;">Student Account</h5>
-                    <form id="coachForm">
+                    <form id="studentForm">
                         <div class="row mb-3">
                             <div class="col-md-12">
                                 <label for="studentNo" class="form-label">Student No.</label>
@@ -60,6 +60,7 @@
                                     maxlength="8" 
                                     pattern="\d-\d{6}" 
                                     title="Format: 1-210134 (1 digit, a dash, and 6 digits)" 
+                                    placeholder="Based on your School ID."
                                     required 
                                     disabled
                                 >
@@ -67,14 +68,14 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-12">
-                                <label for="coachFirstName" class="form-label">Email</label>
-                                <input type="text" class="form-control" id="coachFirstName" required disabled>
+                                <label for="studentFirstName" class="form-label">Email</label>
+                                <input type="text" class="form-control" id="studentFirstName" required disabled>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-12">
-                                <label for="coachLastName" class="form-label">Password</label>
-                                <input type="text" class="form-control" id="coachLastName" required disabled>
+                                <label for="studentLastName" class="form-label">Password</label>
+                                <input type="text" class="form-control" id="studentLastName" required disabled>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-outline-success" id="addStudentButton" disabled>Add Student</button>
