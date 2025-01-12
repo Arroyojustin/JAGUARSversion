@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 10, 2025 at 07:47 AM
+-- Generation Time: Jan 12, 2025 at 07:32 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -51,7 +51,27 @@ INSERT INTO `approvals` (`id`, `first_name`, `middle_initial`, `last_name`, `gen
 (37, 'MA Concepcion', '.', 'Arroyo', '', 17, 165.00, 55.00, 20.20, '0935252525252', 'Mataba', '2025-01-10 05:47:52', 'approved'),
 (40, 'Stephen', 'W', 'Curry', '', 16, 0.00, 0.00, 0.00, '09369007677', 'wala lang', '2025-01-10 01:08:41', 'approved'),
 (41, 'Kyrie', 'D', 'Irving', '', 19, 0.00, 0.00, 0.00, '0906837106', 'None', '2025-01-10 00:31:36', 'approved'),
-(44, 'Justin', 'M', 'Arroyo', '', 16, 0.00, 0.00, 0.00, '09068377106', 'None', '2025-01-10 05:47:32', 'approved');
+(44, 'Justin', 'M', 'Arroyo', '', 16, 0.00, 0.00, 0.00, '09068377106', 'None', '2025-01-10 05:47:32', 'approved'),
+(45, 'Bryan', 'g', 'Custodio', '', 16, 0.00, 0.00, 0.00, '09068377106', 'None', '2025-01-11 03:24:28', 'approved'),
+(46, 'Lebron', 'J', 'James', '', 16, 0.00, 0.00, 0.00, '0952355221', 'none', '2025-01-11 07:31:50', 'approved'),
+(47, 'Tom ', '&', 'Jerry', '', 16, 0.00, 0.00, 0.00, '09588732525', 'none', '2025-01-11 07:31:54', 'approved'),
+(48, 'Aron Cyrus', 'D', 'Esteron', '', 17, 0.00, 0.00, 0.00, '098777625765', 'none', '2025-01-11 08:24:02', 'approved'),
+(49, 'Jedan Voltaire', 'A', 'Esteron', '', 18, 0.00, 0.00, 0.00, '0944363637', 'none', '2025-01-11 11:24:01', 'approved'),
+(50, 'Mark Dave', 'A', 'Antonio', '', 18, 0.00, 0.00, 0.00, '09651446321', 'none', '2025-01-11 11:24:05', 'approved');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `coaches`
+--
+
+CREATE TABLE `coaches` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `gender` enum('male','female','other') NOT NULL,
+  `sports_id` int(11) NOT NULL,
+  `qr_code` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -81,7 +101,13 @@ INSERT INTO `requirements` (`id`, `first_name`, `middle_initial`, `last_name`, `
 (37, 'MA Concepcion', '.', 'Arroyo', 'female', 17, 165.00, 55.00, 20.20, '0935252525252', 'Mataba'),
 (40, 'Stephen', 'W', 'Curry', 'male', 16, 0.00, 0.00, 0.00, '09369007677', 'wala lang'),
 (41, 'Kyrie', 'D', 'Irving', 'male', 19, 0.00, 0.00, 0.00, '0906837106', 'None'),
-(44, 'Justin', 'M', 'Arroyo', 'male', 16, 0.00, 0.00, 0.00, '09068377106', 'None');
+(44, 'Justin', 'M', 'Arroyo', 'male', 16, 0.00, 0.00, 0.00, '09068377106', 'None'),
+(45, 'Bryan', 'g', 'Custodio', 'male', 16, 0.00, 0.00, 0.00, '09068377106', 'None'),
+(46, 'Lebron', 'J', 'James', 'male', 16, 0.00, 0.00, 0.00, '0952355221', 'none'),
+(47, 'Tom ', '&', 'Jerry', 'male', 16, 0.00, 0.00, 0.00, '09588732525', 'none'),
+(48, 'Aron Cyrus', 'D', 'Esteron', 'male', 17, 0.00, 0.00, 0.00, '098777625765', 'none'),
+(49, 'Jedan Voltaire', 'A', 'Esteron', 'male', 18, 0.00, 0.00, 0.00, '0944363637', 'none'),
+(50, 'Mark Dave', 'A', 'Antonio', 'male', 18, 0.00, 0.00, 0.00, '09651446321', 'none');
 
 -- --------------------------------------------------------
 
@@ -125,7 +151,13 @@ INSERT INTO `submitted` (`requirements_id`, `status`) VALUES
 (37, 'approved'),
 (40, 'approved'),
 (41, 'approved'),
-(44, 'approved');
+(44, 'approved'),
+(45, 'approved'),
+(46, 'approved'),
+(47, 'approved'),
+(48, 'approved'),
+(49, 'approved'),
+(50, 'approved');
 
 -- --------------------------------------------------------
 
@@ -177,6 +209,12 @@ ALTER TABLE `approvals`
   ADD KEY `fk_approvals_sport_id` (`sport_id`);
 
 --
+-- Indexes for table `coaches`
+--
+ALTER TABLE `coaches`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `requirements`
 --
 ALTER TABLE `requirements`
@@ -209,13 +247,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `approvals`
 --
 ALTER TABLE `approvals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+
+--
+-- AUTO_INCREMENT for table `coaches`
+--
+ALTER TABLE `coaches`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `requirements`
 --
 ALTER TABLE `requirements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `sports`
@@ -227,7 +271,7 @@ ALTER TABLE `sports`
 -- AUTO_INCREMENT for table `submitted`
 --
 ALTER TABLE `submitted`
-  MODIFY `requirements_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `requirements_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `users`
