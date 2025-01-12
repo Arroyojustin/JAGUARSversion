@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2025 at 07:32 AM
+-- Generation Time: Jan 12, 2025 at 07:44 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -70,8 +70,18 @@ CREATE TABLE `coaches` (
   `name` varchar(255) NOT NULL,
   `gender` enum('male','female','other') NOT NULL,
   `sports_id` int(11) NOT NULL,
-  `qr_code` varchar(255) DEFAULT NULL
+  `qr_code` varchar(255) DEFAULT NULL,
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `coaches`
+--
+
+INSERT INTO `coaches` (`id`, `name`, `gender`, `sports_id`, `qr_code`, `user_id`) VALUES
+(1, 'bryan custodio', 'male', 16, NULL, 22),
+(2, 'Lucas Pablo', 'male', 16, NULL, 23),
+(3, 'Steve Kerr', 'male', 16, NULL, 26);
 
 -- --------------------------------------------------------
 
@@ -212,7 +222,8 @@ ALTER TABLE `approvals`
 -- Indexes for table `coaches`
 --
 ALTER TABLE `coaches`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `requirements`
@@ -253,7 +264,7 @@ ALTER TABLE `approvals`
 -- AUTO_INCREMENT for table `coaches`
 --
 ALTER TABLE `coaches`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `requirements`
@@ -289,6 +300,12 @@ ALTER TABLE `users`
 ALTER TABLE `approvals`
   ADD CONSTRAINT `approvals_ibfk_1` FOREIGN KEY (`id`) REFERENCES `submitted` (`requirements_id`),
   ADD CONSTRAINT `fk_approvals_sport_id` FOREIGN KEY (`sport_id`) REFERENCES `sports` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `coaches`
+--
+ALTER TABLE `coaches`
+  ADD CONSTRAINT `coaches_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `submitted`
