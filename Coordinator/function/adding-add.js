@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
     const addStudentButton = document.getElementById('addStudentButton');
+    const firstNameInput = document.getElementById('studentFirstName');
+    const lastNameInput = document.getElementById('studentLastName');
     const studentNoInput = document.getElementById('studentNo');
-    const emailInput = document.getElementById('studentFirstName');
-    const passwordInput = document.getElementById('studentLastName');
+    const emailInput = document.getElementById('studentEmail');
+    const passwordInput = document.getElementById('studentPassword');
 
     // Enable button when inputs are filled (example logic)
     studentNoInput.addEventListener('input', validateForm);
@@ -29,6 +31,10 @@ document.addEventListener('DOMContentLoaded', function () {
             student_no: studentNoInput.value,
             email: emailInput.value,
             password: passwordInput.value,
+            first_name: firstNameInput.value,
+            last_name: lastNameInput.value,
+            sport_id: $('#studentForm').data('sport_id'),
+            student_id: $('#studentForm').data('student_id'),
         };
 
         // Send data to server using AJAX

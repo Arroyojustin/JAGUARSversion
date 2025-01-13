@@ -21,19 +21,9 @@
                     <form id="qrCodeForm">
                         <div class="mb-3">
                             <label for="studentQRInput" class="form-label" style="font-weight: bold;">Name <span style="color: red;">*</span></label>
-                            <input
-                                type="text"
-                                class="form-control text-center"
-                                id="studentQRInput"
-                                style="border: 1px solid #ccc; border-radius: 5px;"
-                            >
+                            <input type="text" class="form-control text-center" id="studentQRInput" style="border: 1px solid #ccc; border-radius: 5px;">
                         </div>
-                        <button
-                            type="button"
-                            class="btn btn-primary btn-lg"
-                            id="generateQRButton"
-                            style="background-color: #007bff; border: none; border-radius: 5px; font-size: 1.2rem;"
-                        >
+                        <button type="button" class="btn btn-primary btn-lg" id="generateQRButton" style="background-color: #007bff; border: none; border-radius: 5px; font-size: 1.2rem;">
                             GENERATE 
                         </button>
                     </form>
@@ -51,31 +41,32 @@
                     <form id="studentForm">
                         <div class="row mb-3">
                             <div class="col-md-12">
-                                <label for="studentNo" class="form-label">Student No.</label>
-                                <input 
-                                    type="text" 
-                                    class="form-control" 
-                                    id="studentNo" 
-                                    value="" 
-                                    maxlength="8" 
-                                    pattern="\d-\d{6}" 
-                                    title="Format: 1-210134 (1 digit, a dash, and 6 digits)" 
-                                    placeholder="Based on your School ID."
-                                    required 
-                                    disabled
-                                >
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-12">
-                                <label for="studentFirstName" class="form-label">Email</label>
+                                <label for="studentFirstName" class="form-label">First Name</label>
                                 <input type="text" class="form-control" id="studentFirstName" required disabled>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-12">
-                                <label for="studentLastName" class="form-label">Password</label>
+                                <label for="studentLastName" class="form-label">Last Name</label>
                                 <input type="text" class="form-control" id="studentLastName" required disabled>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <label for="studentNo" class="form-label">Student No.</label>
+                                <input type="text" class="form-control" id="studentNo" value="" maxlength="8" pattern="\d-\d{6}" placeholder="Based on your School ID." required disabled>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <label for="studentEmail" class="form-label">Email</label>
+                                <input type="text" class="form-control" id="studentEmail" required disabled>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <label for="studentPassword" class="form-label">Password</label>
+                                <input type="text" class="form-control" id="studentPassword" required disabled>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-outline-success" id="addStudentButton" disabled>Add Student</button>

@@ -44,6 +44,12 @@ $(document).ready(function() {
                                 text: studentName,
                                 click: function() {
                                     $('#studentQRInput').val(studentName);
+                                    $('#studentFirstName').val(student.first_name);
+                                    $('#studentLastName').val(student.last_name);
+
+                                    // Store hidden values for sport_id and student_id
+                                    $('#studentForm').data('sport_id', student.sport_id);
+                                    $('#studentForm').data('student_id', student.id);
                                 }
                             });
                             approvedStudents.append(button);

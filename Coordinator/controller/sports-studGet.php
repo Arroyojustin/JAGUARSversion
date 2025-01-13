@@ -16,7 +16,8 @@ if (isset($_POST['sport_name'])) {
         $sportId = $sport['id'];
 
         // Fetch students from the approvals table who have the selected sport_id
-        $studentQuery = "SELECT first_name, last_name FROM approvals WHERE sport_id = ? AND status = 'approved'";
+        // $studentQuery = "SELECT first_name, last_name FROM approvals WHERE sport_id = ? AND status = 'approved'";
+        $studentQuery = "SELECT id, first_name, last_name, sport_id FROM approvals WHERE sport_id = ? AND status = 'approved'";
         $stmt = $conn->prepare($studentQuery);
         $stmt->bind_param("i", $sportId);
         $stmt->execute();
