@@ -30,32 +30,26 @@ function viewStudent(requirementsId) {
 // Approve student
 function approveStudent(requirementsId) {
     if (!requirementsId) {
-        alert("No student selected!");
+        alert("No student selected for approval.");
         return;
     }
 
-    if (confirm("Are you sure you want to approve this student?")) {
-        fetch("controller/approveee.php", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ requirements_id: requirementsId })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert("Student approved successfully!");
-
-                // Remove the student name from the requirements container
-                const studentElement = document.getElementById(`student-${requirementsId}`);
-                if (studentElement) {
-                    studentElement.remove();
-                }
-            } else {
-                alert("Error approving student: " + data.error);
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
-    }
+    fetch('controller/approveee.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ requirements_id: requirementsId }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("Student approved successfully!");
+            location.reload();
+        } else {
+            alert(`Error: ${data.error}`);
+        }
+    })
+    .catch(error => {
+        console.error("Approval failed:", error);
+        alert("An error occurred during approval.");
+    });
 }

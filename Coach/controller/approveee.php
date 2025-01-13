@@ -22,18 +22,6 @@ if (!$student) {
     exit;
 }
 
-// Check if the student is already approved
-$checkSql = "SELECT id FROM approvals WHERE id = ?";
-$checkStmt = $conn->prepare($checkSql);
-$checkStmt->bind_param("i", $requirementsId);
-$checkStmt->execute();
-$checkResult = $checkStmt->get_result();
-
-if ($checkResult->num_rows > 0) {
-    echo json_encode(["success" => false, "error" => "Student already approved."]);
-    exit;
-}
-
 // Insert student details into the approvals table
 $insertSql = "INSERT INTO approvals 
     (id, first_name, middle_initial, last_name, gender, sport_id, height, weight, bmi, phone_number, health_protocol, status) 
@@ -55,7 +43,6 @@ $insertStmt->bind_param(
     $student['health_protocol']
 );
 
-// Execute the insertion and update the `submitted` table
 if ($insertStmt->execute()) {
     $updateSql = "UPDATE submitted SET status = 'approved' WHERE requirements_id = ?";
     $updateStmt = $conn->prepare($updateSql);
