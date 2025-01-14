@@ -24,32 +24,32 @@ if (!$student) {
 
 // Insert student details into the approvals table
 $insertSql = "INSERT INTO approvals 
-    (id, first_name, middle_initial, last_name, gender, sport_id, height, weight, bmi, phone_number, health_protocol, status) 
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'approved')";
+    (id, first_name, middle_initial, last_name, gender, sport_id, height, weight, bmi, phone_number, health_protocol, approved_at, status) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), 'approved')";
 $insertStmt = $conn->prepare($insertSql);
-
 $insertStmt->bind_param(
-    "isssiiiddss", 
-    $requirementsId, 
-    $student['first_name'], 
-    $student['middle_initial'], 
-    $student['last_name'], 
-    $student['gender'], 
-    $student['sport_id'], 
-    $student['height'], 
-    $student['weight'], 
-    $student['bmi'], 
-    $student['phone_number'], 
+    "isssiiiddss",
+    $student['id'],
+    $student['first_name'],
+    $student['middle_initial'],
+    $student['last_name'],
+    $student['gender'],
+    $student['sport_id'],
+    $student['height'],
+    $student['weight'],
+    $student['bmi'],
+    $student['phone_number'],
     $student['health_protocol']
 );
 
 if ($insertStmt->execute()) {
+    // Update the submitted table status to 'approved'
     $updateSql = "UPDATE submitted SET status = 'approved' WHERE requirements_id = ?";
     $updateStmt = $conn->prepare($updateSql);
     $updateStmt->bind_param("i", $requirementsId);
     $updateStmt->execute();
 
-    echo json_encode(["success" => true]);
+    echo json_encode(["success" => true, "message" => "Student approved successfully."]);
 } else {
     echo json_encode(["success" => false, "error" => "Failed to record approval: " . $conn->error]);
 }
