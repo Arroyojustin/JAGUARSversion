@@ -7,6 +7,7 @@
                     <div class="card-body">
                         <h5 class="card-title mb-3" style="border-bottom: 1px solid #000;">Requirements</h5>
                         <div class="text-center">
+                            <ul id="approvalList" style="list-style-type: none; padding-left: 0;"></ul>
                         </div>
                     </div>
                 </div>
@@ -18,7 +19,7 @@
                     <div class="card-body">
                         <h5 class="card-title mb-3" style="border-bottom: 1px solid #000;">Information</h5>
                         <div id="student-info">
-                            <p>Select a requirement to view student details.</p>
+                           <p id="student-details">Select a requirement to view student details.</p>
                         </div>
                         <!-- Buttons for Approve and Reject -->
                         <div class="mt-4">
