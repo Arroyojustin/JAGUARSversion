@@ -110,11 +110,11 @@ header("Pragma: no-cache");
 
     <!--START::CRUD AJAX FUNCTIONS-->
     <script src="function/date-control.js"></script>
-    <script src="function/required.js"></script>
 
     <script src="function/get-sports.js"></script>
     <script src="function/get-qrs.js"></script>
     <script src="function/adding-add.js"></script>
+    <script src="function/fetch-student.js"></script>
     <!--END::CRUD AJAX FUNCTIONS-->
 </body>
 </html>

@@ -86,7 +86,8 @@
 
     <!--START::CRUD AJAX FUNCTIONS-->
     <script src="./crud-ajax/getstudent.js"></script>
-    <script src="./crud-ajax/appr.js"></script>
+    <script src="./crud-ajax/get-stud.js"></script>
+
     
 </body>
 </html>
