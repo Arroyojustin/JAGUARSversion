@@ -21,6 +21,9 @@ $(document).ready(function () {
                         <strong>Health Protocol:</strong> ${student.health_protocol || 'None'}<br>
                         <strong>Approved At:</strong> ${student.formatted_approved_at}
                     `);
+
+                    // Store student ID for approve/reject actions
+                    $('#approve-btn, #reject-btn').data('student-id', student.id);
                 } else {
                     $('#student-details').text('Failed to fetch student details.');
                 }
@@ -35,5 +38,33 @@ $(document).ready(function () {
     $('#approvalList').on('click', '.student-btn', function () {
         const studentId = $(this).data('student-id'); // Get the student's ID
         fetchStudentDetails(studentId); // Call the function to fetch and display details
+    });
+
+    // Approve button click event
+    $('#approve-btn').on('click', function () {
+        const studentId = $(this).data('student-id');
+        if (!studentId) {
+            alert('Please select a student first.');
+            return;
+        }
+
+        $.ajax({
+            url: 'controller/approve-student.php',
+            method: 'POST',
+            data: { id: studentId },
+            dataType: 'json',
+            success: function (response) {
+                if (response.success) {
+                    alert('Student Approved Successfully');
+                    // Optionally, refresh the student details or approval list
+                } else {
+                    alert('Failed to approve student: ' + response.message);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Approval error:', xhr.responseText, status, error);
+                alert('An error occurred while approving the student.');
+            },
+        });
     });
 });

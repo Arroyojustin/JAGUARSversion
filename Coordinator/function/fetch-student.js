@@ -86,7 +86,7 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (response) {
                 if (response.success) {
-                    alert('Student successfully approved!');
+                    alert('Student successfully submitted!');
                     $('#studAddForm')[0].reset();
                     $('#studAddForm input, #studAddForm select').prop('disabled', true);
                     $('#submitStudentButton').prop('disabled', true);
