@@ -47,24 +47,5 @@ $(document).ready(function () {
             alert('Please select a student first.');
             return;
         }
-
-        $.ajax({
-            url: 'controller/approve-student.php',
-            method: 'POST',
-            data: { id: studentId },
-            dataType: 'json',
-            success: function (response) {
-                if (response.success) {
-                    alert('Student Approved Successfully');
-                    // Optionally, refresh the student details or approval list
-                } else {
-                    alert('Failed to approve student: ' + response.message);
-                }
-            },
-            error: function (xhr, status, error) {
-                console.error('Approval error:', xhr.responseText, status, error);
-                alert('An error occurred while approving the student.');
-            },
-        });
     });
 });
