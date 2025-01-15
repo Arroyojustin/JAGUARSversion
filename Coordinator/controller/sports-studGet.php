@@ -1,40 +1,30 @@
 <?php
-include '../../dbconn.php'; // Include your DB connection
+include '../../dbconn.php';
 
-if (isset($_POST['sport_name'])) {
-    $sportName = $_POST['sport_name'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['sport_name'])) {
+    $sport_name = $_POST['sport_name'];
 
-    // Fetch sport_id based on sport_name
-    $sportQuery = "SELECT id FROM sports WHERE sport_name = ?";
-    $stmt = $conn->prepare($sportQuery);
-    $stmt->bind_param("s", $sportName);
+    // Securely fetch the sport_id
+    $stmt = $conn->prepare("SELECT id FROM sports WHERE sport_name = ?");
+    $stmt->bind_param("s", $sport_name);
     $stmt->execute();
     $result = $stmt->get_result();
+    $sport = $result->fetch_assoc();
 
-    if ($result->num_rows > 0) {
-        $sport = $result->fetch_assoc();
-        $sportId = $sport['id'];
+    if ($sport) {
+        $sport_id = $sport['id'];
 
-        // Fetch students from the approvals table who have the selected sport_id
-        // $studentQuery = "SELECT first_name, last_name FROM approvals WHERE sport_id = ? AND status = 'approved'";
-        $studentQuery = "SELECT id, first_name, last_name, sport_id FROM approvals WHERE sport_id = ? AND status = 'approved'";
-        $stmt = $conn->prepare($studentQuery);
-        $stmt->bind_param("i", $sportId);
+        // Fetch students with the sport_id
+        $stmt = $conn->prepare("SELECT id, first_name, last_name, sport_id FROM approvals WHERE sport_id = ?");
+        $stmt->bind_param("i", $sport_id);
         $stmt->execute();
-        $result = $stmt->get_result();
-
-        $students = [];
-        while ($row = $result->fetch_assoc()) {
-            $students[] = $row;
-        }
+        $students = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
         echo json_encode(['success' => true, 'students' => $students]);
     } else {
         echo json_encode(['success' => false, 'message' => 'Sport not found']);
     }
 } else {
-    echo json_encode(['success' => false, 'message' => 'No sport selected']);
+    echo json_encode(['success' => false, 'message' => 'Invalid request']);
 }
-
-$conn->close();
 ?>
