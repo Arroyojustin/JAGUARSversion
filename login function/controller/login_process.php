@@ -32,6 +32,8 @@ if ($stmt->num_rows > 0) {
             $redirectUrl = './Coordinator/coordinator.php';
         } elseif ($userType == 'coach') {
             $redirectUrl = './Coach/coach.php'; // Redirect to coach page
+        } elseif ($userType == 'student') {
+                $redirectUrl = './Students/varsity.php';
         } else {
             $redirectUrl = '../index.php'; // For undefined user types
         }

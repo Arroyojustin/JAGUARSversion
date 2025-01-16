@@ -2,7 +2,7 @@
     <!-- Add icon button on the left side -->
     <div class="d-flex align-items-center">
             <button id="sidebar-toggle" class="btn btn-link me-3">
-            <i class="bi bi-list"></i>
+            <i class="fa-solid fa-bars fs-4" style="color: #198754;"></i>
         </button>
         
     </div>
@@ -19,7 +19,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-end shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item d-flex align-items-center menu-link" href="#" onclick="showSection(event, 'coor-profile');">
-                    <i class="bi bi-person-bounding-box" style="color: #017e3e;"></i>Profile
+                  <i class="fa-solid fa-user fa-lg fa-fw me-2" style="color: #017e3e;"></i>Profile
                 </a>
                 <!-- <a class="dropdown-item d-flex align-items-center" href="controller/auto-logout/logout.php"> -->
                 <a class="dropdown-item d-flex align-items-center" href="../index.php">
