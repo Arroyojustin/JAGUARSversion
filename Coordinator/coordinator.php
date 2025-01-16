@@ -29,7 +29,6 @@ header("Pragma: no-cache");
     <link rel="stylesheet" href="../assets/css/header.css">
     <link rel="stylesheet" href="../assets/css/coordinator css/calendar.css">
     <link rel="stylesheet" href="../assets/css/coordinator css/daynames.css">
-    <link rel="stylesheet" href="../assets/css/coordinator css/small-date.css">
     <link rel="stylesheet" href="../assets/css/coordinator css/attendance/attend.css">
     <link rel="stylesheet" href="../assets/css/coordinator css/sports-studGet.css">
     <link rel="stylesheet" href="../assets/css/coordinator css/radial/radialc.css">
@@ -116,6 +115,7 @@ header("Pragma: no-cache");
     <script src="function/adding-add.js"></script>
     <script src="function/fetch-student.js"></script>
     <script src="function/radial.js"></script>
+    <script src="function/cate-stud.js"></script>
     <!--END::CRUD AJAX FUNCTIONS-->
 </body>
 </html>

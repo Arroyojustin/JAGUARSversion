@@ -1,22 +1,28 @@
 <?php
-// functions.php
+include('./../dbconn.php'); // Include database connection
 
-// Include database connection
-include('./../dbconn.php');
+if (isset($_POST['sports_id']) && !empty($_POST['sports_id'])) {
+    $sports_id = intval($_POST['sports_id']); // Get the sports_id
 
-// Function to fetch sports from the database
-function getSports() {
-    global $conn;
-    $sql = "SELECT sport_name FROM sports";
-    $result = $conn->query($sql);
+    // Query to get students based on sports_id
+    $query = "SELECT firstname, lastname, email, phone_no FROM users WHERE sports_id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $sports_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
+    $students = [];
     if ($result->num_rows > 0) {
-        // Loop through the results and create options for the dropdown
         while ($row = $result->fetch_assoc()) {
-            echo "<option value='" . $row['sport_name'] . "'>" . $row['sport_name'] . "</option>";
+            $students[] = $row;
         }
-    } else {
-        echo "<option value='' disabled>No sports available</option>";
     }
+    $stmt->close();
+
+    echo json_encode($students); // Return data as JSON
+} else {
+    echo json_encode([]); // Return empty JSON if no sports_id
 }
+
+$conn->close();
 ?>
