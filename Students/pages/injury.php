@@ -16,4 +16,5 @@
       <!-- Rows will be dynamically inserted here -->
     </tbody>
   </table>
+  <div id="chart"></div>
 </div>

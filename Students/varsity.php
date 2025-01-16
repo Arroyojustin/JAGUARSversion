@@ -94,6 +94,7 @@
 
     <!--START::CRUD AJAX FUNCTIONS-->
     <script src="./crud/slider.js"></script>
+    <script src="./crud/storckchart.js"></script>
 
     
 </body>
