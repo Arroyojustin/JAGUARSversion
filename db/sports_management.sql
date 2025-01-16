@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2025 at 03:00 AM
+-- Generation Time: Jan 16, 2025 at 03:22 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -56,16 +56,6 @@ CREATE TABLE `coaches` (
   `qr_code` varchar(255) DEFAULT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `coaches`
---
-
-INSERT INTO `coaches` (`id`, `name`, `gender`, `sports_id`, `qr_code`, `user_id`) VALUES
-(1, 'bryan custodio', 'male', 16, NULL, 22),
-(2, 'Lucas Pablo', 'male', 16, NULL, 23),
-(3, 'Steve Kerr', 'male', 16, NULL, 26),
-(4, 'Tania hernandez', 'female', 17, NULL, 29);
 
 -- --------------------------------------------------------
 
@@ -151,11 +141,6 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `lastname`, `firstname`, `middle_initial`, `student_no`, `weight`, `height`, `bmi`, `bloodtype`, `phone_no`, `email`, `password`, `user_type`, `gender`, `civil_status`, `profile_photo`, `sports_id`) VALUES
 (1, 'Lleve', 'Shelalin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin@edu.ph', '$2y$10$2ey6fmYSA4xnxIPVp2qRG.Gqt1k1BdGNF7fvBR1835GpQfSSABtVq', 'admin', 'female', 'married', NULL, NULL),
 (7, 'Perez', 'Jerome', '', NULL, NULL, NULL, NULL, NULL, '', 'coor@edu.ph', '$2y$10$zpyfExl.dISoTv65SkzIzOgQsxw/ON3YgLwjnwRB3osJcuhe3yE6u', 'coordinator', 'male', 'single', NULL, NULL),
-(22, 'custodio', 'bryan', 'g', NULL, NULL, NULL, NULL, NULL, '0936907677', 'bryshiee@edu.ph', '$2y$10$65weft7stoBv.QS.g2X1BObiA6vAw8nWYwq0FOabGtODX/tTRTzTq', 'coach', 'male', NULL, NULL, 16),
-(23, 'Pablo', 'Lucas', 'F', NULL, NULL, NULL, NULL, NULL, '0988888888', 'lucs@edu.ph', '$2y$10$Ig3AXiBsW1sgvah56by5oOTK1C2eqH/vd1m6fGM2fBVLd/BnSskEG', 'coach', 'male', NULL, NULL, 16),
-(25, 'Esteron', 'Aron', 'D', NULL, NULL, NULL, NULL, NULL, '097264872622', 'aron@edu.ph', '$2y$10$I1mP8ux7UvH1drW0x4ZL1uiZPOdA5qP/9m7L6/hI7Nd1CmMybi0Se', 'coordinator', 'male', 'single', NULL, NULL),
-(26, 'Kerr', 'Steve', 'S', NULL, NULL, NULL, NULL, NULL, '09422323233', 'gsw@edu.ph', '$2y$10$tUtrjvtw6GaZoM0..qZfU.A0W2I47pdBldq59w/ODKob2Qb1UBPTa', 'coach', 'male', NULL, NULL, 16),
-(29, 'hernandez', 'Tania', 'A', NULL, NULL, NULL, NULL, NULL, '092323232323', 'taniii@edu.ph', '$2y$10$ghJdZAjoPAKAVsDd6C51feo2oEoF7Q9vNvdgFmGNkkWHnlQICfUz6', 'coach', 'female', NULL, NULL, 17),
 (55, 'Payos', 'John Paul ', 'R', '1-210134', 0.00, 0.00, 0.00, NULL, '09987876833', '1-210134@edu.ph', '$2y$10$8qmOXHqriaQ1CsNWHxlwwO5cYcmqVklHu6.ipbMZfDL8GCSwfDH9a', 'student', 'male', NULL, NULL, 16),
 (56, 'Custodio', 'Bryan', 'G', '1-210136', 0.00, 0.00, 0.00, NULL, '09888888888', '1-210136@edu.ph', '$2y$10$kR0qcZU3cmmG0TVQ1ehrquy4C505Be1wdL0yG7gtRdR2Wxox3/huC', 'student', 'male', NULL, NULL, 16);
 
