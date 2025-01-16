@@ -154,3 +154,22 @@
 .training-schedule .training-item span {
   font-size: 14px;
 }
+
+.training-schedule {
+  position: relative;
+}
+
+.training-add-icon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 60px; /* Adjust size as needed */
+  color: #888888; /* Adjust color as needed */
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.training-add-icon:hover {
+  transform: scale(1.1);
+  color: #a0a0a0; /* Adjust hover color as needed */
+}

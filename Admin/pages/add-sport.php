@@ -1,7 +1,3 @@
-<?php
-include './../dbconn.php';
-?>
-
 <div class="container-fluid p-0 m-0" id="add-sport" style="display: none;">
     <div class="container mt-1">
         <div class="row mb-3"></div>
@@ -13,17 +9,6 @@ include './../dbconn.php';
                     <div class="card-body">
                         <h5 class="card-title underline mb-3">Sports</h5>
                         <div id="sportsContainer" class="d-flex flex-column">
-                            <?php
-                            $query = "SELECT id, sport_name FROM sports";
-                            $result = $conn->query($query);
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<button class='btn btn-outline-secondary mb-2 sport-button' data-id='" . $row['id'] . "'>" . htmlspecialchars($row['sport_name']) . "</button>";
-                                }
-                            } else {
-                                echo "<p>No sports added yet.</p>";
-                            }
-                            ?>
                         </div>
 
                         <!-- Add Sport and Update Logo Buttons -->
@@ -89,19 +74,6 @@ include './../dbconn.php';
                                 <div class="col-md-4">
                                     <label for="sportCategory" class="form-label">Sport Category</label>
                                     <select name="sportCategory" class="form-control" id="sportCategory" required>
-                                        <?php
-                                        // Fetch sports from the sports table
-                                        $sportQuery = "SELECT sport_name FROM sports";
-                                        $result = $conn->query($sportQuery);
-
-                                        if ($result->num_rows > 0) {
-                                            while ($row = $result->fetch_assoc()) {
-                                                echo "<option value='" . $row['sport_name'] . "'>" . $row['sport_name'] . "</option>";
-                                            }
-                                        } else {
-                                            echo "<option value=''>No sports available</option>";
-                                        }
-                                        ?>
                                     </select>
                                 </div>
                                 <div class="col-md-4">
@@ -171,20 +143,6 @@ include './../dbconn.php';
                         <label for="sportSelect" class="form-label"></label>
                         <select class="form-select" id="sportSelect" name="sport_id" required>
                             <option value="" disabled selected>Choose Sport</option>
-                            <?php
-                            // Fetch sports from the sports table
-                            include './../dbconn.php';
-                            $sportQuery = "SELECT id, sport_name FROM sports";
-                            $result = $conn->query($sportQuery);
-
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<option value='" . $row['id'] . "'>" . htmlspecialchars($row['sport_name']) . "</option>";
-                                }
-                            } else {
-                                echo "<option value=''>No sports available</option>";
-                            }
-                            ?>
                         </select>
                     </div>
 
@@ -200,33 +158,3 @@ include './../dbconn.php';
         </div>
     </div>
 </div>
-
-<script>
-document.getElementById('updateLogoForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission
-
-    var formData = new FormData(this); // Get the form data
-
-    // Perform the AJAX request
-    fetch('controller/upload-logo.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === 'success') {
-            alert('Logo updated successfully!');
-            // Optionally close the modal here
-            var myModal = new bootstrap.Modal(document.getElementById('updateLogoModal'));
-            myModal.hide();
-        } else {
-            alert(data.message); // Show the error message if the update fails
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('There was an error with the request.');
-    });
-});
-</script>
-
