@@ -8,8 +8,11 @@
                 <div class="card shadow-container mb-4">
                     <div class="card-body">
                         <h5 class="card-title underline mb-3">Sports</h5>
-                        <div id="sportsContainer" class="d-flex flex-column">
+                        <div id="sportsContainer" class="d-flex flex-column" style="max-height: calc(4 * 50px); overflow-y: auto; padding: 10px; box-sizing: border-box;">
+                            <!-- Dynamically added sports buttons will appear here -->
                         </div>
+
+
 
                         <!-- Add Sport and Update Logo Buttons -->
                         <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mt-3">
