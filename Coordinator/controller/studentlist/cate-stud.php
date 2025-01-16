@@ -7,53 +7,59 @@ try {
     // Get parameters
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
     $length = isset($_GET['length']) ? intval($_GET['length']) : 10;
+    $sport = isset($_GET['sport']) && $_GET['sport'] !== '' ? intval($_GET['sport']) : null;  // Use null if no sport is selected
 
-    // Fetch sport names for the select dropdown
-    $sportSql = "SELECT sport_name FROM sports ORDER BY sport_name ASC";
-    $sportResult = $conn->query($sportSql);
-    $sports = [];
-    while ($sportRow = $sportResult->fetch_assoc()) {
-        $sports[] = $sportRow['sport_name'];
-    }
-
-    // Pagination variables
+    // Calculate pagination
     $start = ($page - 1) * $length;
 
-    // SQL query to retrieve students with user_type = 'student'
+    // Build the WHERE clause for filtering by sport
+    $whereClause = "WHERE users.user_type = 'student'";
+    if ($sport !== null) {
+        $whereClause .= " AND users.sports_id = ?";
+    }
+
+    // Query to retrieve required fields
     $sql = "
     SELECT 
-        users.id AS user_id,
-        CONCAT(users.lastName, ', ', users.firstName) AS Name,
-        users.email AS Email,
-        users.phone_no AS PhoneNo,
-        sports.sport_name AS Sport
+        CONCAT(users.firstname, ' ', users.lastname) AS Name,
+        users.phone_no,
+        users.email
     FROM users
-    LEFT JOIN sports ON users.sports_id = sports.id
-    WHERE users.user_type = 'student'
+    $whereClause
     LIMIT ?, ?";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('ii', $start, $length);
+    if ($sport !== null) {
+        $stmt->bind_param('iii', $sport, $start, $length);  // If sport is selected, bind it
+    } else {
+        $stmt->bind_param('ii', $start, $length);  // If no sport is selected, don't bind sport
+    }
     $stmt->execute();
     $result = $stmt->get_result();
 
     $html = '';
     if ($result->num_rows === 0) {
-        $html = '<tr><td colspan="4">No data available</td></tr>';
+        $html = '<tr><td colspan="3">No data available</td></tr>';
     } else {
         while ($row = $result->fetch_assoc()) {
             $html .= '<tr>';
             $html .= '<td>' . htmlspecialchars($row['Name']) . '</td>';
-            $html .= '<td>' . htmlspecialchars($row['Email']) . '</td>';
-            $html .= '<td>' . htmlspecialchars($row['PhoneNo']) . '</td>';
-            $html .= '<td>' . htmlspecialchars($row['Sport']) . '</td>';
+            $html .= '<td>' . htmlspecialchars($row['phone_no'] ?: '--') . '</td>';
+            $html .= '<td>' . htmlspecialchars($row['email'] ?: '--') . '</td>';
             $html .= '</tr>';
         }
     }
 
-    // Total count for pagination
-    $totalSql = "SELECT COUNT(*) AS total FROM users WHERE user_type = 'student'";
+    // Total count query
+    $totalSql = "
+    SELECT COUNT(*) AS total
+    FROM users
+    $whereClause";
+
     $totalStmt = $conn->prepare($totalSql);
+    if ($sport !== null) {
+        $totalStmt->bind_param('i', $sport);  // If sport is selected, bind it
+    }
     $totalStmt->execute();
     $totalResult = $totalStmt->get_result();
     $total = $totalResult->fetch_assoc()['total'];
@@ -91,8 +97,7 @@ try {
         'pagination' => $pagination,
         'start' => $start + 1,
         'end' => min($start + $length, $total),
-        'total' => $total,
-        'sports' => $sports // Added sports array for populating the dropdown
+        'total' => $total
     ];
     echo json_encode($response);
 } catch (Exception $e) {
