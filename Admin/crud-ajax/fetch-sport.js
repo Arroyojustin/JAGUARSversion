@@ -1,75 +1,60 @@
-$(document).ready(function() {
-    // Handle form submission
-    $('#addSportForm').submit(function(e) {
-        e.preventDefault(); // Prevent the default form submission
-
-        // Gather form data
-        var sportName = $('#sport_name').val();
-        var positions = []; // Store positions as an array
-
-        // Loop through the dynamically added positions
-        $('#positionList li').each(function() {
-            positions.push($(this).text());
-        });
-
-        // AJAX request
+$(document).ready(function () {
+    // Function to load sports from the database and display them
+    function loadSports() {
         $.ajax({
-            url: 'controller/fetch-sport.php', // Your PHP file to handle the data
-            method: 'POST',
-            data: {
-                sport_name: sportName,
-                positions: JSON.stringify(positions) // Send as JSON string
-            },
-            success: function(response) {
-                var result = JSON.parse(response);
-                if (result.success) {
-                    alert('Sport added successfully!');
-                    $('#addSportModal').modal('hide'); // Close the modal
+            url: 'controller/retrieve-sporname.php', // Endpoint to fetch sports
+            type: 'GET',
+            success: function (response) {
+                if (response.success) {
+                    const sportsContainer = $('#sportsContainer');
+                    sportsContainer.empty(); // Clear the container before populating
 
-                    // Save sport name to localStorage
-                    let existingSports = JSON.parse(localStorage.getItem('sports')) || [];
-                    existingSports.push(sportName);
-                    localStorage.setItem('sports', JSON.stringify(existingSports));
-
-                    // Update the display
-                    displaySportsFromLocalStorage();
+                    response.sports.forEach(function (sport) {
+                        sportsContainer.append(`
+                            <button type="button" class="btn btn-outline-secondary mb-2" style="width: 100%; text-align: center;">
+                                ${sport}
+                            </button>
+                        `);
+                    });
                 } else {
-                    alert('Error adding sport!');
+                    console.error('Failed to fetch sports:', response.message);
                 }
             },
-            error: function(xhr, status, error) {
-                alert('Error adding sport!');
+            error: function (xhr, status, error) {
+                console.error('Error fetching sports:', error);
             }
-        });
-    });
-
-    // Function to display sports from localStorage
-    function displaySportsFromLocalStorage() {
-        let sportsContainer = $('#sportsContainer');
-        sportsContainer.empty(); // Clear existing sports
-
-        let sports = JSON.parse(localStorage.getItem('sports')) || [];
-        sports.forEach(function(sportName) {
-            sportsContainer.append(`
-                <button class="btn btn-outline-secondary w-100 mb-2">${sportName}</button>
-            `);
         });
     }
 
-    // Initialize sports display on page load
-    displaySportsFromLocalStorage();
+    // Call loadSports on page load
+    loadSports();
 
-    // Add new position to the list
-    $('#addPositionBtn').click(function() {
-        var position = $('#position_input').val();
-        if (position) {
-            $('#positionList').append(`<li class="list-group-item">${position} <button type="button" class="btn btn-danger btn-sm float-end remove-position">Remove</button></li>`);
-            $('#position_input').val(''); // Clear the input field
-        }
-    });
+    // Handle Add Sport Form submission
+    $('#addSportForm').on('submit', function (e) {
+        e.preventDefault(); // Prevent form from reloading the page
 
-    // Remove position from the list
-    $(document).on('click', '.remove-position', function() {
-        $(this).closest('li').remove(); // Remove the li element
+        const sportName = $('#sport_name').val();
+
+        $.ajax({
+            url: 'controller/fetch-sport.php', // Endpoint to add a sport
+            type: 'POST',
+            data: { sport_name: sportName },
+            success: function (response) {
+                if (response.success) {
+                    // Reload the sports list after successfully adding a new sport
+                    loadSports();
+
+                    // Reset the form and close the modal
+                    $('#addSportForm')[0].reset();
+                    $('#addSportModal').modal('hide');
+                } else {
+                    alert('Failed to add sport: ' + response.message);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error adding sport:', error);
+                alert('An error occurred while adding the sport.');
+            }
+        });
     });
 });
