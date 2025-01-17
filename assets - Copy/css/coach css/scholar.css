@@ -1,0 +1,28 @@
+#athlete {
+    display: none;
+}
+
+.scholar {
+    font-family: Arial, sans-serif;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.scholar th, .scholar td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.scholar th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.scholar tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.scholar tr:hover {
+    background-color: #ddd;
+}

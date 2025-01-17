@@ -1,0 +1,62 @@
+/* Title styling */
+.fillin-requirements-title {
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Styling for the requirementsForm */
+.requirementsForm {
+    margin-top: 20px;            /* Add spacing above the form */
+    padding: 15px;              /* Add padding inside the form */
+    border-radius: 8px;         /* Round the corners *//
+}
+
+/* Styling for form labels */
+.requirementsForm .form-label {
+    font-weight: 600;
+    color: #333;                /* Use a dark gray color for text */
+    margin-bottom: 5px;         /* Add spacing below labels */
+}
+
+/* Styling for input fields */
+.requirementsForm .form-control {
+    border: 1px solid #ccc;     /* Subtle border */
+    border-radius: 4px;         /* Round the corners slightly */
+    padding: 10px;              /* Add padding inside input fields */
+    font-size: 1.2rem;            /* Set a comfortable font size */
+    transition: border-color 0.2s ease-in-out; /* Smooth transition on focus */
+}
+
+/* Input field focus effect */
+.requirementsForm .form-control:focus {
+    border-color: #007bff;      /* Change border color to blue on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25); /* Add a glow effect */
+    outline: none;              /* Remove default outline */
+}
+
+/* Styling for the BMI input (readonly) */
+.requirementsForm #bmi {
+    background-color: #f8f9fa;  /* Light gray background for readonly field */
+    color: #6c757d;             /* Muted text color */
+    cursor: not-allowed;        /* Change cursor to indicate non-editable */
+}
+
+
+/* Buttons vertically aligned and expanded in portrait/mobile view */
+.fillin-button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    position: fixed;
+    bottom: 55px;
+    left: 100px;
+}
+
+/* Adjust button width on smaller screens */
+@media (max-width: 576px) {
+    .fillin-button-group button {
+        flex-direction: row;
+        justify-content: center;
+        gap: 20px;
+    }
+}

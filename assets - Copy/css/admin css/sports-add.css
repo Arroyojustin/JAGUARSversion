@@ -1,0 +1,45 @@
+/* Default styles for larger screens */
+.shadow-container {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; /* Add some space between cards */
+}
+
+.underline {
+    border-bottom: 1px solid #000;
+}
+
+/* Styles for portrait view */
+@media (max-width: 767px) {
+    .container-fluid {
+        padding: 10px; /* Add padding to the main container */
+    }
+
+    .shadow-container {
+        margin-bottom: 20px; /* Add space between containers */
+    }
+
+    .card {
+        margin-bottom: 20px; /* Ensure each card has space below it */
+    }
+}
+
+button[type="submit"] { 
+    float: right;
+}
+
+
+#sportsContainer {
+    display: flex;
+    flex-direction: column; /* Stacks items vertically */
+    align-items: center; /* Centers items horizontally */
+    justify-content: center; /* Centers the items vertically (if container has height) */
+    gap: 10px; /* Adds space between buttons */
+}
+
+#sportsContainer button {
+    width: 200px; /* Set a fixed width for each button */
+    text-align: center; /* Center the text inside the button */
+    padding: 10px;
+    
+}
+

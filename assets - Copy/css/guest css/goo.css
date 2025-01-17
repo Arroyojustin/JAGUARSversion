@@ -1,0 +1,103 @@
+/* Ensure "Good choice" is fixed and centered */
+.fixed-header {
+    position: fixed;
+    top: 55px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000; /* Keep it above other elements */
+    width: 100%;
+    padding: 10px 0;
+    font-size: 2rem; /* Adjust font size as needed */
+    font-weight: bolder;
+}
+
+/* Center the content vertically and horizontally */
+.container.text-center.d-flex.flex-column.justify-content-center {
+    min-height: 100vh; /* Ensure full viewport height */
+    padding: 20px; /* Add some padding for spacing */
+    background: #f8f9fa; /* Light background color */
+    color: #333; /* Text color */
+}
+
+
+/* Green check icon animation */
+@keyframes checkAnimation {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.animate-check {
+    animation: checkAnimation 1s ease-in-out;
+    width: 180px; /* Set a fixed size for the icon */
+    height: auto;
+    margin: 0 auto; /* Center the icon horizontally */
+}
+
+/* Bottom text styling */
+.gl-bottom-text {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #000000; /* Green color for the "Goodluck!" text */
+}
+
+/* Notification text styling */
+.gl-notification {
+    font-size: 1rem;
+    color: #6c757d; /* Secondary text color */
+    margin-top: 10px;
+}
+
+
+/* Animation for the check image */
+@keyframes checkAnimation {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.animate-check {
+    animation: checkAnimation 1s ease-in-out;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .gl-h3 {
+        font-size: 1.6rem;
+    }
+    .gl-image {
+        width: 240px;
+        height: 240px;
+        border-width: 4px;
+        margin-left: 10px;
+    }
+    .gl-notification {
+        font-size: 1.4rem;
+    }
+}
+
+/* Ensuring the button stays at the bottom */
+button.mt-auto {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: fit-content;
+}

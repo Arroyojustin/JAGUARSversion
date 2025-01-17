@@ -1,0 +1,55 @@
+/* Title styling */
+.fillup-requirements-title {
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Fill-up form container styling */
+.fillup-form {
+    padding: 20px;
+
+}
+
+/* Label styling */
+.fillup-form .form-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #343a40; /* Dark gray for contrast */
+}
+
+/* Input field styling */
+.fillup-form .form-control {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.4rem;
+    color: #495057;
+}
+
+/* Input field focus state */
+.fillup-form .form-control:focus {
+    border-color: #28a745; /* Green border on focus */
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5); /* Green glow */
+    outline: none;
+}
+
+
+/* Buttons vertically aligned and expanded in portrait/mobile view */
+/* Buttons container styling */
+.fillup-button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    position: fixed;
+    bottom: 55px;
+    left: 100px;
+}
+
+/* Adjust button width on smaller screens */
+@media (max-width: 768px) {
+    .fillup-button-container {
+        flex-direction: row;
+        justify-content: center;
+        gap: 20px;
+    }
+}

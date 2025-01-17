@@ -1,0 +1,99 @@
+/* Make the container display flex horizontally */
+.container-fluid {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Calendar container styling */
+.calendar-container {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 550px;  /* Adjust this if you want the calendar to be bigger/smaller */
+  height: 377px;  /* Adjust this if you want the calendar to be bigger/smaller */
+  background-color: #f8f8f8;
+  margin-right: 20px; /* Optional: adds space between the calendar and clock */
+}
+
+/* Clock container styling */
+.clock-container {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  width: auto;  /* Adjust as necessary */
+  margin-left: 20px; /* Optional: adds space between the calendar and clock */
+}
+
+/* Additional styling for calendar and clock */
+.calendar {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-left: 30px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ccc;
+}
+
+.calendar-header i {
+  margin: 0 10px; /* Adds spacing between the icons and the h2 */
+  font-size: 16px; /* Optional: Adjust caret size */
+  cursor: pointer;
+}
+
+.calendar-header h2 {
+  margin: 0; /* Ensure no extra spacing */
+  font-size: 18px;
+  text-align: center;
+}
+
+.calendar-body {
+  padding: 10px;
+}
+
+.day-names {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  gap: 5px;
+}
+
+.days span {
+  display: inline-block;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.days span:not(:empty) {
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.days span:hover {
+  background-color: #e0e0e0;
+  cursor: pointer;
+}
