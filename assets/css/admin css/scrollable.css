@@ -1,6 +1,0 @@
-#sportsContainer {
-    max-height: calc(4 * 50px); /* Adjust 50px to the height of a button */
-    overflow-y: auto;          /* Enable vertical scrolling */
-    padding: 10px;             /* Add padding for spacing */
-    box-sizing: border-box;    /* Ensure padding fits within max-height */
-}
