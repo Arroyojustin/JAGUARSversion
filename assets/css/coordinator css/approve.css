@@ -1,0 +1,139 @@
+/* Parent container styles */
+#train-approve {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Position items at opposite corners */
+    align-items: flex-start; /* Align items to the top */
+    padding: 20px; /* Add spacing around the container */
+    height: 100%; /* Adjust height to auto for flexibility */
+    box-sizing: border-box; /* Include padding in height/width calculations */
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+}
+
+/* Form styles */
+.approve-form {
+    border: 1px solid #919191; /* Border around the form */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Inner spacing */
+    width: 480px; /* Default width */
+    max-width: 100%; /* Adjust width for mobile screens */
+    margin: 0 auto 20px; /* Center align and add spacing below */
+    background-color: rgb(255, 255, 255);
+}
+
+/* Card styles */
+.approve-card {
+    border: 1px solid #ccc; /* Border around the card */
+    border-radius: 10px; /* Rounded corners */
+    padding: 15px; /* Inner spacing */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 599px; /* Default width */
+    max-width: 100%; /* Adjust width for mobile screens */
+    margin: 0 auto 20px; /* Center align and add spacing below */
+    background-color: rgb(255, 255, 255);
+}
+
+/* Title styles */
+.approve-card-title {
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer; /* Add pointer cursor */
+}
+
+/* Status styles */
+.approve-card-status {
+    font-size: 16px;
+    color: #ffc107; /* Yellow color for pending status */
+}
+
+/* Optional input styles */
+.approve-input {
+    width: 100%; /* Full width inputs */
+    padding: 10px; /* Inner padding */
+    margin-bottom: 15px; /* Spacing between inputs */
+    border: 1px solid #5f5f5f; /* Border for inputs */
+    border-radius: 4px; /* Rounded input corners */
+    background-color: rgb(247, 247, 247);
+}
+
+/* Button styles */
+.approve-button, .approve-reject-button {
+    margin-right: 10px; /* Spacing between buttons */
+    margin-bottom: 10px; /* Add spacing below on small screens */
+    width: 48%; /* Reduce button width for smaller viewports */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    #train-approve {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center align items */
+        padding: 10px; /* Reduce padding for small screens */
+    }
+
+    .approve-card, .approve-form {
+        width: 100%; /* Full width for smaller screens */
+        max-width: 100%; /* Ensure no overflow */
+        margin: 0 0 20px 0; /* Add consistent spacing */
+    }
+
+    .approve-button, .approve-reject-button {
+        width: 100%; /* Full-width buttons for small screens */
+        margin-right: 0; /* Reset right margin */
+    }
+}
+
+/* Bootstrap 5 Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1050;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0,0,0,0.5);
+    padding: 0.5rem;
+}
+
+.modal-dialog {
+    max-width: 500px;
+    margin: 1.75rem auto;
+}
+
+.modal-content {
+    border-radius: 0.3rem;
+}
+
+.modal-header {
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-footer {
+    padding: 1rem;
+    border-top: 1px solid #dee2e6;
+    justify-content: space-between;
+}
+
+.modal-title {
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 1.5;
+}
+
+.modal-body {
+    padding: 1rem;
+}
+
+.modal-close {
+    color: #6c757d;
+    text-decoration: none;
+    font-size: 1.25rem;
+    border: none;
+    background: none;
+}
+
+.modal-close:hover {
+    color: #495057;
+}

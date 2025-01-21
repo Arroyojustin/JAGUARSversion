@@ -32,6 +32,7 @@ header("Pragma: no-cache");
     <link rel="stylesheet" href="../assets/css/coordinator css/attendance/attend.css">
     <link rel="stylesheet" href="../assets/css/coordinator css/sports-studGet.css">
     <link rel="stylesheet" href="../assets/css/coordinator css/radial/radialc.css">
+    <link rel="stylesheet" href="../assets/css/coordinator css/approve.css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
                 rel="stylesheet">
 
@@ -90,6 +91,8 @@ header("Pragma: no-cache");
                     <?php include "pages/stud-add.php"; ?>
                     <?php include "pages/student.php"; ?>
                     <?php include "pages/account-add.php"; ?>
+                    <?php include "pages/training-approve.php"; ?>
+
                 </div>
             </div>
             <!-- End of Main Content -->
@@ -116,6 +119,7 @@ header("Pragma: no-cache");
     <script src="function/fetch-student.js"></script>
     <script src="function/radial.js"></script>
     <script src="function/cate-stud.js"></script>
+    <script src="function/fetch-training.js"></script>
     <!--END::CRUD AJAX FUNCTIONS-->
 </body>
 </html>

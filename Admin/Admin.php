@@ -105,6 +105,8 @@ header("Pragma: no-cache");
     <script src="./crud-ajax/chart.js"></script>
     <script src="./crud-ajax/fetch-sport.js"></script>
     <script src="./crud-ajax/retrieve-sporname.js"></script>
+    <script src="./crud-ajax/retrieve-sport.js"></script>
+    <script src="./crud-ajax/insert-coach.js"></script>
 
 
     

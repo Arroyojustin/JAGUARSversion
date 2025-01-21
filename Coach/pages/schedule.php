@@ -114,7 +114,6 @@
         <span>-</span>
         <span>Asiatech Quadrangle</span>
       </div>
-      <!-- Add the icon here -->
       <i class='bx bxs-plus-circle training-add-icon' data-bs-toggle="modal" data-bs-target="#scheduleModal"></i>
     </div>
   </div>
@@ -151,6 +150,7 @@
   </div>
 </div>
 
+
 <script>
   // Tab Switching Logic
   const attendanceTab = document.getElementById("attendance-tab");
@@ -181,11 +181,12 @@
     const date = document.getElementById("scheduleDate").value;
     const time = document.getElementById("scheduleTime").value;
     const location = document.getElementById("scheduleLocation").value;
+    const sportCategory = document.getElementById("sportCategorysched").value;
 
     const trainingSchedule = document.querySelector(".training-schedule");
     const newTrainingItem = document.createElement("div");
     newTrainingItem.className = "training-item";
-    newTrainingItem.innerHTML = `<span>${time}</span> <span>-</span> <span>${location}</span>`;
+    newTrainingItem.innerHTML = `<span>${time}</span> <span>-</span> <span>${location}</span> <span>(${sportCategory})</span>`;
     trainingSchedule.appendChild(newTrainingItem);
 
     const modal = bootstrap.Modal.getInstance(document.getElementById("scheduleModal"));

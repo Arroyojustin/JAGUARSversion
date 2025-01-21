@@ -10,11 +10,18 @@ $(document).ready(function () {
                     sportsContainer.empty(); // Clear the container before populating
 
                     response.sports.forEach(function (sport) {
-                        sportsContainer.append(`
+                        const sportButton = $(`
                             <button type="button" class="btn btn-outline-secondary mb-2" style="width: 100%; text-align: center;">
                                 ${sport}
                             </button>
                         `);
+
+                        // Attach click event handler to each button
+                        sportButton.on('click', function () {
+                            fetchPositions(sport);
+                        });
+
+                        sportsContainer.append(sportButton);
                     });
                 } else {
                     console.error('Failed to fetch sports:', response.message);
@@ -26,35 +33,34 @@ $(document).ready(function () {
         });
     }
 
-    // Call loadSports on page load
-    loadSports();
-
-    // Handle Add Sport Form submission
-    $('#addSportForm').on('submit', function (e) {
-        e.preventDefault(); // Prevent form from reloading the page
-
-        const sportName = $('#sport_name').val();
-
+    // Function to fetch positions for a selected sport
+    function fetchPositions(sportName) {
         $.ajax({
-            url: 'controller/fetch-sport.php', // Endpoint to add a sport
+            url: 'controller/fetch-positions.php', // Endpoint to fetch positions
             type: 'POST',
             data: { sport_name: sportName },
             success: function (response) {
+                const rolesContainer = $('#rolesContainer');
+                rolesContainer.empty(); // Clear the container before populating
+    
                 if (response.success) {
-                    // Reload the sports list after successfully adding a new sport
-                    loadSports();
-
-                    // Reset the form and close the modal
-                    $('#addSportForm')[0].reset();
-                    $('#addSportModal').modal('hide');
+                    response.positions.forEach(function (position) {
+                        // Add position as a button
+                        rolesContainer.append(`
+                            <button type="button" class="btn btn-outline-secondary mb-2" style="width: 100%; text-align: center;">
+                                ${position}
+                            </button>
+                        `);
+                    });
                 } else {
-                    alert('Failed to add sport: ' + response.message);
+                    rolesContainer.append('<p>' + response.message + '</p>');
                 }
             },
             error: function (xhr, status, error) {
-                console.error('Error adding sport:', error);
-                alert('An error occurred while adding the sport.');
+                console.error('Error fetching positions:', error);
             }
         });
-    });
+    }
+    // Call loadSports on page load
+    loadSports();
 });

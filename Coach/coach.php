@@ -87,6 +87,7 @@
     <!--START::CRUD AJAX FUNCTIONS-->
     <script src="crud-ajax/retrieve-stud.js"></script>
     <script src="crud-ajax/get-info.js"></script>
+    <script src="crud-ajax/sched-cate.js"></script>
     
 
     

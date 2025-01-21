@@ -25,6 +25,10 @@
              <i class='bx bxs-user-plus'></i>
             <span>Add List</span>
         </a>
+        <a href="#" class="sidebar-link" onclick="showSection(event, 'train-approve')">
+         <i class='bx bx-check-double'></i>
+            <span>Approval</span>
+        </a>
     </nav>
 </div>
 
@@ -44,7 +48,7 @@
         }
 
         // Hide all sections
-        document.querySelectorAll('#fronte, #coor-profile, #attendance, #sports, #list, #adds').forEach(section => {
+        document.querySelectorAll('#fronte, #coor-profile, #attendance, #sports, #list, #adds, #train-approve').forEach(section => {
             section.style.display = 'none';
         });
 

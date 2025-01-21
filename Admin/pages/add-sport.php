@@ -22,7 +22,7 @@
                             </button>
                             <!-- Update Logo/Photo Button -->
                             <button id="updateLogoButton" class="btn btn-secondary w-100 w-md-auto" data-bs-toggle="modal" data-bs-target="#updateLogoModal">
-                                Update Logo/Photo
+                                Update Logo
                             </button>
                         </div>
                     </div>
@@ -81,11 +81,11 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" required>
+                                    <input type="email" class="form-control" id="coachemail" required>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="password" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="password" required>
+                                    <input type="password" class="form-control" id="coachpassword" required>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary" id="submitCoachButton">Add</button>
