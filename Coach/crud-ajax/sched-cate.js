@@ -4,6 +4,7 @@ $(document).ready(function () {
         event.preventDefault();
 
         const scheduleData = {
+            title: $('#scheduleTitle').val(), // New title field
             date: $('#scheduleDate').val(),
             time: $('#scheduleTime').val(),
             location: $('#scheduleLocation').val(),

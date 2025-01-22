@@ -103,12 +103,7 @@
       </table>
     </div>
     <div class="training-schedule">
-      <h5>Approved Training</h5>
-      <div class="training-item">
-        <span>4:00PM to 7:00PM</span>
-        <span>-</span>
-        <span>Asiatech Quadrangle</span>
-      </div>
+      <h5>Training</h5>
       <div class="training-item">
         <span>4:00PM to 7:00PM</span>
         <span>-</span>
@@ -130,7 +125,7 @@
       <div class="modal-body">
       <form id="scheduleForm">
         <h3 class="form-title">Schedule Training</h3>
-        <div class="mb-3">
+         <div class="mb-3">
           <label for="scheduleTitle" class="form-label">Title</label>
           <input type="text" class="form-control" id="scheduleTitle" placeholder="Enter title" required>
         </div>

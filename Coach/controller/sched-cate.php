@@ -24,19 +24,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Collect training schedule data
+    $title = $_POST['title'] ?? null; // New title field
     $date = $_POST['date'] ?? null;
     $time = $_POST['time'] ?? null;
     $location = $_POST['location'] ?? null;
 
-    if (!$date || !$time || !$location) {
+    if (!$title || !$date || !$time || !$location) {
         echo json_encode(['success' => false, 'message' => 'Missing required fields.']);
         exit;
     }
 
     // Insert the training schedule
-    $insertQuery = "INSERT INTO training (`Date`, `Time`, `Location`, `Status`, `created_by`) VALUES (?, ?, ?, 'Pending', ?)";
+    $insertQuery = "INSERT INTO training (`Title`, `Date`, `Time`, `Location`, `Status`, `created_by`) VALUES (?, ?, ?, ?, 'Pending', ?)";
     $stmt = $conn->prepare($insertQuery);
-    $stmt->bind_param("sssi", $date, $time, $location, $coachId);
+    $stmt->bind_param("ssssi", $title, $date, $time, $location, $coachId);
 
     if ($stmt->execute()) {
         echo json_encode(['success' => true]);
