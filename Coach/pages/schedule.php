@@ -128,20 +128,25 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="scheduleForm">
-          <div class="mb-3">
-            <label for="scheduleDate" class="form-label">Date</label>
-            <input type="date" class="form-control" id="scheduleDate" required>
-          </div>
-          <div class="mb-3">
-            <label for="scheduleTime" class="form-label">Time</label>
-            <input type="time" class="form-control" id="scheduleTime" required>
-          </div>
-          <div class="mb-3">
-            <label for="scheduleLocation" class="form-label">Location</label>
-            <input type="text" class="form-control" id="scheduleLocation" placeholder="Enter location" required>
-          </div>
-        </form>
+      <form id="scheduleForm">
+        <h3 class="form-title">Schedule Training</h3>
+        <div class="mb-3">
+          <label for="scheduleTitle" class="form-label">Title</label>
+          <input type="text" class="form-control" id="scheduleTitle" placeholder="Enter title" required>
+        </div>
+        <div class="mb-3">
+          <label for="scheduleDate" class="form-label">Date</label>
+          <input type="date" class="form-control" id="scheduleDate" required>
+        </div>
+        <div class="mb-3">
+          <label for="scheduleTime" class="form-label">Time</label>
+          <input type="time" class="form-control" id="scheduleTime" required>
+        </div>
+        <div class="mb-3">
+          <label for="scheduleLocation" class="form-label">Location</label>
+          <input type="text" class="form-control" id="scheduleLocation" placeholder="Enter location" required>
+        </div>
+      </form>
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary" form="scheduleForm">Save Schedule</button>

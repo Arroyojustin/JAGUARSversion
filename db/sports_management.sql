@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2025 at 03:14 PM
+-- Generation Time: Jan 22, 2025 at 04:41 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -119,6 +119,7 @@ CREATE TABLE `training` (
   `TrainingID` int(11) NOT NULL,
   `Date` date NOT NULL,
   `Time` time NOT NULL,
+  `Title` varchar(255) NOT NULL,
   `Location` varchar(255) NOT NULL,
   `Status` enum('Approved','Rejected','Pending') NOT NULL,
   `created_by` int(11) NOT NULL
@@ -128,9 +129,8 @@ CREATE TABLE `training` (
 -- Dumping data for table `training`
 --
 
-INSERT INTO `training` (`TrainingID`, `Date`, `Time`, `Location`, `Status`, `created_by`) VALUES
-(8, '2025-01-09', '18:06:00', 'Golden City Club House', 'Pending', 0),
-(9, '2025-01-23', '14:13:00', 'Golden City Club House', 'Pending', 0);
+INSERT INTO `training` (`TrainingID`, `Date`, `Time`, `Title`, `Location`, `Status`, `created_by`) VALUES
+(14, '2025-01-23', '15:16:00', '', 'Golden City Club House', 'Pending', 77);
 
 -- --------------------------------------------------------
 
@@ -230,7 +230,8 @@ ALTER TABLE `sports`
 -- Indexes for table `training`
 --
 ALTER TABLE `training`
-  ADD PRIMARY KEY (`TrainingID`);
+  ADD PRIMARY KEY (`TrainingID`),
+  ADD KEY `fk_training_created_by` (`created_by`);
 
 --
 -- Indexes for table `users`
@@ -271,7 +272,7 @@ ALTER TABLE `sports`
 -- AUTO_INCREMENT for table `training`
 --
 ALTER TABLE `training`
-  MODIFY `TrainingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `TrainingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -294,6 +295,12 @@ ALTER TABLE `approvals`
 --
 ALTER TABLE `coaches`
   ADD CONSTRAINT `coaches_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `training`
+--
+ALTER TABLE `training`
+  ADD CONSTRAINT `fk_training_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `users`

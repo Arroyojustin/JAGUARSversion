@@ -26,7 +26,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="trainingApprovalForm">
+                <!-- <form id="trainingApprovalForm">
                     <div class="mb-3">
                         <label for="trainingDate" class="form-label">Date</label>
                         <input type="date" class="form-control" id="trainingDate" required>
@@ -41,7 +41,7 @@
                     </div>
                     <button type="submit" class="btn btn-outline-success">Approve</button>
                     <button type="button" class="btn btn-outline-danger" id="rejectWithRemarksButton">Reject</button>
-                </form>
+                </form> -->
 
                 <!-- Remarks Form -->
                 <form id="remarksForm" style="display: none;">
@@ -56,37 +56,4 @@
     </div>
 </div>
 
-  <script>
-     // JavaScript to handle modal display
-   // JavaScript to handle modal display
-   document.querySelector('.approve-card-title').addEventListener('click', function () {
-        var modal = new bootstrap.Modal(document.getElementById('trainingApprovalModal'));
-        modal.show();
-    });
-
-    // Toggle Remarks Form
-    document.getElementById('rejectWithRemarksButton').addEventListener('click', function () {
-        var remarksForm = document.getElementById('remarksForm');
-        remarksForm.style.display = 'block';
-    });
-
-    // Handle remarks form submission
-    document.getElementById('remarksForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-        // Handle rejection with remarks here
-        console.log('Rejected with remarks:', document.getElementById('remarks').value);
-        // Close the modal
-        var modal = bootstrap.Modal.getInstance(document.getElementById('trainingApprovalModal'));
-        modal.hide();
-    });
-
-    // Form submission
-    document.getElementById('trainingApprovalForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-        // Handle form submission here
-        console.log('Form submitted');
-        // Close the modal
-        var modal = bootstrap.Modal.getInstance(document.getElementById('trainingApprovalModal'));
-        modal.hide();
-    });
-  </script>
+  
