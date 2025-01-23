@@ -88,6 +88,9 @@
     <script src="crud-ajax/retrieve-stud.js"></script>
     <script src="crud-ajax/get-info.js"></script>
     <script src="crud-ajax/sched-cate.js"></script>
+    <script src="crud-ajax/date-time.js"></script>
+    <script src="crud-ajax/calendar.js"></script>
+    <script src="crud-ajax/list-stud.js"></script>
     
 
     

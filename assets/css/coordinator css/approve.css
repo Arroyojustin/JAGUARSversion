@@ -28,14 +28,14 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     width: 599px; /* Default width */
     max-width: 100%; /* Adjust width for mobile screens */
-    margin: 0 auto 20px; /* Center align and add spacing below */
+    margin: 0 0 20px 10px; /* Center align and add spacing below */
     background-color: rgb(255, 255, 255);
 }
 
 /* Title styles */
 .approve-card-title {
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 15px;
+    font-weight: normal;
     cursor: pointer; /* Add pointer cursor */
 }
 
@@ -137,3 +137,32 @@
 .modal-close:hover {
     color: #495057;
 }
+
+#modalTrigger {
+    font-size: 14px;
+    font-weight: normal;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start; /* Align items to the left */
+    position: relative;
+}
+
+#modalTrigger .coach-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 5px;
+}
+
+#modalTrigger .location {
+    font-size: 14px;
+    color: #333;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    text-align: right;
+}
+
+
