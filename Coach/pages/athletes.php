@@ -4,7 +4,7 @@
             <thead>
                 <tr>
                     <th class="athlete-name">Student Name</th>
-                    <th class="athlete-scholar">Scholar</th>
+                    <th class="athlete-scholar">Scholarship(%)</th>
                 </tr>
             </thead>
             <tbody id="student-table-body">
@@ -25,9 +25,20 @@
             <form id="scholarForm">
                 <div class="modal-body">
                     <input type="hidden" id="studentId" name="studentId">
+                    
                     <div class="mb-3">
-                        <label for="scholar" class="form-label">Scholarship</label>
-                        <input type="text" class="form-control" id="scholar" name="scholar" required>
+                        <label for="grades" class="form-label">Grades (%)</label>
+                        <input type="number" class="form-control" id="grades" name="grades" min="0" max="100" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="skills" class="form-label">Skills (%)</label>
+                        <input type="number" class="form-control" id="skills" name="skills" min="0" max="100" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="scholar" class="form-label">Scholarship (%)</label>
+                        <input type="text" class="form-control" id="scholar" name="scholar" readonly>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -55,11 +66,11 @@
                         <label for="grades" class="form-label">Grades (%)</label>
                         <input type="number" class="form-control" id="grades" name="grades" min="0" max="100" required>
                     </div>
-                    
+
                     <!-- Skills -->
                     <div class="mb-3">
-                        <label for="skills" class="form-label">Skills (%)</label>
-                        <input type="number" class="form-control" id="skills" name="skills" min="0" max="100" required>
+                        <label for="skills" class="form-label">Skills (0-10)</label>
+                        <input type="number" class="form-control" id="skills" name="skills" min="0" max="10" required>
                     </div>
                     
                     <!-- Display calculated scholarship -->

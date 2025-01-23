@@ -41,7 +41,7 @@ if ($conn->connect_error) {
 // Get the form data (including student grades and skills)
 $studentId = $_POST['studentId'];
 $grades = $_POST['grades'];  // Assuming grade is percentage (0-100)
-$skills = $_POST['skills'];  // Assuming skills score (0-100)
+$skills = $_POST['skills'];  // Assuming skills score (0-10)
 
 // Validate input
 if (empty($studentId) || empty($grades) || empty($skills)) {
@@ -72,18 +72,22 @@ function calculateScholarship($grades, $skills) {
 
     // Scholarship based on grades
     if ($grades >= 96) {
-        $scholarship += 60;  // 60% for grades between 96-100
+        $scholarship = 100;  // 100% for grades between 96-100
     } elseif ($grades >= 91) {
-        $scholarship += 50;  // 50% for grades between 91-95
+        $scholarship = 70;   // 70% for grades between 91-95
     } elseif ($grades >= 86) {
-        $scholarship += 40;  // 40% for grades between 86-90
+        $scholarship = 50;   // 50% for grades between 86-90
     } elseif ($grades >= 80) {
-        $scholarship += 30;  // 30% for grades between 80-85
+        $scholarship = 30;   // 30% for grades between 80-85
     }
 
     // Add extra scholarship based on skills (if skills score is available)
-    if ($skills >= 85) {
-        $scholarship += 10;  // Add 10% for skills 85 and above
+    if ($skills >= 8) {
+        $scholarship += 50;  // 50% bonus for excellent skills (8-10)
+    } elseif ($skills >= 5) {
+        $scholarship += 30;  // 30% bonus for average skills (5-7)
+    } else {
+        $scholarship += 0;   // No bonus for poor skills (0-4)
     }
 
     // Ensure scholarship does not exceed 100%
