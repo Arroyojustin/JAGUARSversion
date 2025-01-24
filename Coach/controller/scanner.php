@@ -1,29 +1,32 @@
 <?php
-header("Content-Type: application/json");
+require '../../dbconn.php'; // Include your centralized database connection file
 
-// Include the database connection file
-require '../../dbconn.php';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $data = json_decode(file_get_contents("php://input"), true);
+    $qrCode = $data['qrCode'];
 
-$data = json_decode(file_get_contents("php://input"), true);
+    // Ensure the QR code data is provided
+    if (empty($qrCode)) {
+        echo json_encode(["success" => false, "error" => "Invalid QR code"]);
+        exit;
+    }
 
-if (isset($data['student_id'])) {
-    $student_id = $data['student_id'];
+    // Insert attendance into the database
+    $stmt = $conn->prepare("INSERT INTO attendance (student_id, date_time) VALUES (?, NOW())");
+    if (!$stmt) {
+        echo json_encode(["success" => false, "error" => $conn->error]);
+        exit;
+    }
 
-    // Insert or update attendance
-    $stmt = $conn->prepare("INSERT INTO attendance (student_id, date) VALUES (?, CURDATE()) ON DUPLICATE KEY UPDATE date = CURDATE()");
-    $stmt->bind_param("s", $student_id);
+    $stmt->bind_param("s", $qrCode);
 
     if ($stmt->execute()) {
-        echo json_encode(["status" => "success", "message" => "Attendance marked"]);
+        echo json_encode(["success" => true]);
     } else {
-        echo json_encode(["status" => "error", "message" => "Failed to mark attendance"]);
+        echo json_encode(["success" => false, "error" => $stmt->error]);
     }
 
     $stmt->close();
-} else {
-    echo json_encode(["status" => "error", "message" => "Invalid data"]);
+    $conn->close();
 }
-
-// Close the database connection
-$conn->close();
 ?>

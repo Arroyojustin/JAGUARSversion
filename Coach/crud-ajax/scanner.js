@@ -1,43 +1,49 @@
-    function initializeScanner() {
-        const qrCodeReader = new Html5Qrcode("reader");
+    // Initialize Instascan
+    let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
 
-        const config = { fps: 10, qrbox: 250 };
+    // Handle successful scans
+    scanner.addListener('scan', function (content) {
+        document.getElementById("qr-reader-results").innerHTML = `
+            <div class="alert alert-success">
+                QR Code Scanned: <strong>${content}</strong>
+            </div>`;
 
-        qrCodeReader.start(
-            { facingMode: "environment" }, // Use back camera
-            config,
-            (decodedText) => {
-                // Handle the decoded text (QR code content)
-                document.getElementById("result-text").innerText = `Attendance marked for ID: ${decodedText}`;
+        // Send the scanned data to the server
+        markAttendance(content);
 
-                // Optionally, send the data to the server
-                markAttendance(decodedText);
+        // Optionally stop the scanner after a successful scan
+        scanner.stop();
+    });
 
-                // Stop the scanner
-                qrCodeReader.stop().then(() => console.log("Scanner stopped")).catch(console.error);
-            },
-            (errorMessage) => {
-                // Handle scan errors or warnings
-                console.log(errorMessage);
-            }
-        ).catch((err) => {
-            console.error("Failed to start QR Code scanner:", err);
-        });
-    }
-
-    function markAttendance(studentId) {
-        // Send the scanned data to your server
-        fetch("controller/scanner.php", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ student_id: studentId }),
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log("Attendance Response:", data);
+    // Start the scanner when the section is shown
+    document.getElementById('scanners').addEventListener('show', function () {
+        Instascan.Camera.getCameras()
+            .then(function (cameras) {
+                if (cameras.length > 0) {
+                    scanner.start(cameras[0]); // Use the first available camera
+                } else {
+                    alert('No cameras found.');
+                }
             })
-            .catch(error => console.error("Error marking attendance:", error));
-    }
+            .catch(function (e) {
+                console.error(e);
+            });
+    });
 
-    // Call initializeScanner when the page loads or when you show the scanner section
-    document.getElementById("scanners").addEventListener("show", initializeScanner);
+    // Mark attendance via AJAX request
+    function markAttendance(qrCodeData) {
+        fetch('controller/scanner.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ qrCode: qrCodeData })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("Attendance marked successfully!");
+            } else {
+                alert("Failed to mark attendance. Try again.");
+            }
+        })
+        .catch(err => console.error(err));
+    }
