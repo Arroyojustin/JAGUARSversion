@@ -43,7 +43,7 @@ function fetchUserDetails(qrCodeData) {
 
     // Example AJAX call to fetch user details from the database
     const xhr = new XMLHttpRequest();
-    xhr.open("GET", `getUserDetails.php?student_no=${userIdentifier}`, true);
+    xhr.open("GET", `controller/scanner.php?student_no=${userIdentifier}`, true);
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
             const user = JSON.parse(xhr.responseText);
