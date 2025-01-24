@@ -4,7 +4,8 @@
         <div class="approve-card-title" id="modalTrigger"></div>
     </div>
     <!-- Modal Structure -->
-    <div class="modal fade" id="trainingApprovalModal" tabindex="-1" aria-labelledby="trainingApprovalLabel" aria-hidden="true">
+    <div class="modal fade" id="trainingApprovalModal" tabindex="-1" aria-labelledby="trainingApprovalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
