@@ -93,6 +93,8 @@
     <script src="crud-ajax/list-stud.js"></script>
     <script src="crud-ajax/post-notif.js"></script>
     <script src="crud-ajax/scanner.js"></script>
+    <script src="crud-ajax/attendance.js"></script>
+
     
 </body>
 </html>
