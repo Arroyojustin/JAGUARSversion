@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 24, 2025 at 04:16 AM
+-- Generation Time: Jan 24, 2025 at 06:10 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,6 +42,25 @@ CREATE TABLE `approvals` (
   `approved_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `approvals`
+--
+
+INSERT INTO `approvals` (`id`, `first_name`, `middle_initial`, `last_name`, `gender`, `sport_id`, `height`, `weight`, `bmi`, `phone_number`, `health_protocol`, `approved_at`) VALUES
+(95, 'sadasd', 'd', 'sadasdsa', 'male', 16, 34.00, 34.00, 345.00, '43242342', 'dsgfewrewfewfsdfes', '2025-01-24 04:23:40');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attendance`
+--
+
+CREATE TABLE `attendance` (
+  `id` int(11) NOT NULL,
+  `student_id` varchar(255) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- --------------------------------------------------------
 
 --
@@ -75,6 +94,15 @@ CREATE TABLE `notifications` (
   `message` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`id`, `message`, `created_at`) VALUES
+(47, 'bryan student', '2025-01-24 03:25:46'),
+(48, 'bryan poogi', '2025-01-24 03:26:02'),
+(49, 'dasdawdwdeqe', '2025-01-24 04:08:51');
 
 -- --------------------------------------------------------
 
@@ -221,6 +249,12 @@ ALTER TABLE `approvals`
   ADD KEY `fk_approvals_sport_id` (`sport_id`);
 
 --
+-- Indexes for table `attendance`
+--
+ALTER TABLE `attendance`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `coaches`
 --
 ALTER TABLE `coaches`
@@ -267,7 +301,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `approvals`
 --
 ALTER TABLE `approvals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+
+--
+-- AUTO_INCREMENT for table `attendance`
+--
+ALTER TABLE `attendance`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `coaches`
@@ -279,7 +319,7 @@ ALTER TABLE `coaches`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `requirements`
