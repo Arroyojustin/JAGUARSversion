@@ -1,70 +1,54 @@
-let scanner;
+let qrCodeScanner;
 
-        // Function to start the QR Code scanner (camera mode)
-        function startScanner() {
-            const videoElement = document.getElementById("qr-video");
+// Start scanning using camera
+function startScan() {
+    document.getElementById("qr-reader").innerHTML = '';  // Clear previous scans
+    qrCodeScanner = new Html5QrcodeScanner("qr-reader", {
+        fps: 10,
+        qrbox: 250
+    });
+    qrCodeScanner.render(onScanSuccess, onScanError);
+}
 
-            // Initialize the QR scanner
-            scanner = new Html5QrcodeScanner("qr-video", {
-                fps: 10, // Frames per second
-                qrbox: 250, // Size of the scanning box
-                aspectRatio: 1.0
-            });
+// Handle QR code scan success
+function onScanSuccess(decodedText, decodedResult) {
+    console.log(`QR Code scanned: ${decodedText}`);
+    // Here, send decodedText (user info from QR code) to your server to identify the user
+    alert(`User identified: ${decodedText}`);
+    qrCodeScanner.clear();  // Stop scanning after successful scan
+}
 
-            // Start the scanner with the rear camera
-            scanner.render(onScanSuccess, onScanError);
-        }
+// Handle QR code scan error
+function onScanError(errorMessage) {
+    console.warn(`QR code scan error: ${errorMessage}`);
+}
 
-        // Function to handle successful scan
-        function onScanSuccess(decodedText, decodedResult) {
-            document.getElementById("scan-result").innerText = `Scanned Result: ${decodedText}`;
-            markAttendance(decodedText);
-        }
-
-        // Function to handle scan errors
-        function onScanError(errorMessage) {
-            console.error("Scan error:", errorMessage);
-        }
-
-        // Function to mark attendance (you can extend this as needed)
-        function markAttendance(studentId) {
-            alert("Attendance marked for student ID: " + studentId);
-        }
-
-        // Function to hide the scanner when the back button is clicked
-        function hideScanner() {
-            document.getElementById("scanners").style.display = "none"; // Hide the scanner
-            scanner.clear();  // Stop the scanner
-        }
-
-        // Function to handle the file upload and process the QR code from the uploaded image
-        function handleFileUpload(event) {
-            const file = event.target.files[0];
-            if (!file) {
-                return;
-            }
-            
-            // Create a file reader to read the uploaded file
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const imageUrl = e.target.result;
-
-                // Use Html5Qrcode to scan the uploaded image
-                Html5Qrcode.scanFile(imageUrl, true)
-                    .then((decodedText) => {
-                        document.getElementById("scan-result").innerText = `Scanned Result: ${decodedText}`;
-                        markAttendance(decodedText);
+// Handle image upload and scan
+function handleImageUpload(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const img = new Image();
+            img.onload = function() {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                canvas.getContext('2d').drawImage(img, 0, 0);
+                const imageData = canvas.toDataURL('image/jpeg');
+                
+                // Scan the image for QR code
+                Html5Qrcode.scanFile(imageData, false)
+                    .then(decodedText => {
+                        console.log(`QR Code scanned: ${decodedText}`);
+                        alert(`User identified: ${decodedText}`);
                     })
-                    .catch((error) => {
-                        console.error("Scan error:", error);
-                        document.getElementById("scan-result").innerText = "Failed to scan the QR Code from the image.";
+                    .catch(err => {
+                        console.error("QR code scan error: ", err);
                     });
             };
-            reader.readAsDataURL(file);
-        }
-
-        // Automatically start scanning when the page loads (optional)
-        window.onload = function() {
-            document.getElementById("scanners").style.display = "block";  // Show the scanner section
-            startScanner();  // Start the camera scanner
+            img.src = e.target.result;
         };
+        reader.readAsDataURL(file);
+    }
+}
