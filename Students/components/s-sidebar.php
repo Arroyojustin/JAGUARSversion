@@ -48,10 +48,10 @@
     }
 
     window.onload = function() {
-        // Set the dashboard as the default active section and link
+        // Set the Home section as the default active section
         showSection(null, 'homes'); 
 
-        // Mark the dashboard link as active on load
+        // Mark the Home link as active on load
         document.querySelector('a[href="#"][onclick*="homes"]').classList.add('active');
     };
 </script>

@@ -1,4 +1,4 @@
-<div class="container-fluid p-0 m-0" id="homes" style="display: none;">
+<div class="container-fluid p-0 m-0" id="homes" style="display: block;">
     <header></header>
     <div class="slider">
         <div class="slides">
@@ -8,9 +8,9 @@
             <div class="slide"><figure><img src="" alt="Image 4"></figure></div>
         </div>
         <!-- Notification Container -->
-        <div class="studnotification-container mt-4" style="border: 1px solid #007bff; padding: 10px; border-radius: 5px;">
-            <!-- Notifications will be injected here via JS -->
-        </div>
+          <div class="studnotification-container mt-4">
+    <!-- Notifications will be dynamically injected here -->
+         </div>
         <div class="navigation">
             <button class="prev" onclick="prevSlide()">❮</button>
             <button class="next" onclick="nextSlide()">❯</button>

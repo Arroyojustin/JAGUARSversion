@@ -1,0 +1,61 @@
+/* General Container Styles */
+.studnotification-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 100%;
+    padding: 10px;
+    margin: 0 auto;
+    z-index: 10;
+}
+
+.notification-card {
+    background-color: #f8f9fa; /* Light background for the notification card */
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.notification-card span {
+    font-size: 16px;
+    color: #333;
+    flex-grow: 1;
+}
+
+.notification-card button {
+    background-color: #dc3545; /* Red color for the dismiss button */
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.notification-card button:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
+
+.notification-card.dismissed {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+@media (max-width: 768px) {
+    /* Adjustments for mobile devices */
+    .notification-card {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .notification-card button {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+}
