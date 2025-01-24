@@ -1,65 +1,43 @@
-function handleImageUpload(event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const img = new Image();
-            img.src = e.target.result;
-            img.onload = function() {
-                scanQRCodeFromImage(img);
-            };
-        };
-        reader.readAsDataURL(file);
-    }
-}
+    function initializeScanner() {
+        const qrCodeReader = new Html5Qrcode("reader");
 
-function openCamera() {
-    // This function would activate the camera to capture an image
-    // For simplicity, we will use a predefined method or library to handle QR scanning from live feed
-    alert("Camera functionality needs to be implemented.");
-}
+        const config = { fps: 10, qrbox: 250 };
 
-function scanQRCodeFromImage(img) {
-    // Use a library like 'jsQR' or 'QRCodeScanner' to scan the QR code from the uploaded image
-    // For demonstration, we assume the QR code contains the user ID or student number
-    const qrCodeData = scanQRCode(img); // A function to scan the QR code from the image
+        qrCodeReader.start(
+            { facingMode: "environment" }, // Use back camera
+            config,
+            (decodedText) => {
+                // Handle the decoded text (QR code content)
+                document.getElementById("result-text").innerText = `Attendance marked for ID: ${decodedText}`;
 
-    if (qrCodeData) {
-        fetchUserDetails(qrCodeData); // Query the database to get user details
-    } else {
-        alert("No QR code found in the image.");
-    }
-}
+                // Optionally, send the data to the server
+                markAttendance(decodedText);
 
-function scanQRCode(img) {
-    // Placeholder function to simulate QR code scanning
-    // In practice, you can integrate libraries to decode the QR code from the image
-    return { student_no: "12345" }; // Example QR code data (can be student number or ID)
-}
-
-function fetchUserDetails(qrCodeData) {
-    // Make an AJAX request to the server to get user details using the scanned QR code data
-    const userIdentifier = qrCodeData.student_no; // You can use student_no or id depending on your QR code structure
-
-    // Example AJAX call to fetch user details from the database
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", `controller/scanner.php?student_no=${userIdentifier}`, true);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            const user = JSON.parse(xhr.responseText);
-            if (user) {
-                document.getElementById('scanned-info').style.display = 'block';
-                document.getElementById('person-info').innerText = `
-                    Name: ${user.firstname} ${user.lastname}
-                    ID: ${user.student_no}
-                    Gender: ${user.gender}
-                    Email: ${user.email}
-                    Civil Status: ${user.civil_status}
-                `;
-            } else {
-                alert("User not found.");
+                // Stop the scanner
+                qrCodeReader.stop().then(() => console.log("Scanner stopped")).catch(console.error);
+            },
+            (errorMessage) => {
+                // Handle scan errors or warnings
+                console.log(errorMessage);
             }
-        }
-    };
-    xhr.send();
-}
+        ).catch((err) => {
+            console.error("Failed to start QR Code scanner:", err);
+        });
+    }
+
+    function markAttendance(studentId) {
+        // Send the scanned data to your server
+        fetch("controller/scanner.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ student_id: studentId }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Attendance Response:", data);
+            })
+            .catch(error => console.error("Error marking attendance:", error));
+    }
+
+    // Call initializeScanner when the page loads or when you show the scanner section
+    document.getElementById("scanners").addEventListener("show", initializeScanner);

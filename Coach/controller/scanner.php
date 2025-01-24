@@ -1,26 +1,29 @@
 <?php
+header("Content-Type: application/json");
+
+// Include the database connection file
 require '../../dbconn.php';
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
-// Get the student number from the URL query parameter
-$student_no = $_GET['student_no'];
+$data = json_decode(file_get_contents("php://input"), true);
 
-// Query to fetch user details based on student number
-$sql = "SELECT * FROM users WHERE student_no = '$student_no'";
-$result = $conn->query($sql);
+if (isset($data['student_id'])) {
+    $student_id = $data['student_id'];
 
-// Check if user is found
-if ($result->num_rows > 0) {
-    // Output the user data as JSON
-    $user = $result->fetch_assoc();
-    echo json_encode($user);
+    // Insert or update attendance
+    $stmt = $conn->prepare("INSERT INTO attendance (student_id, date) VALUES (?, CURDATE()) ON DUPLICATE KEY UPDATE date = CURDATE()");
+    $stmt->bind_param("s", $student_id);
+
+    if ($stmt->execute()) {
+        echo json_encode(["status" => "success", "message" => "Attendance marked"]);
+    } else {
+        echo json_encode(["status" => "error", "message" => "Failed to mark attendance"]);
+    }
+
+    $stmt->close();
 } else {
-    echo json_encode(null); // No user found
+    echo json_encode(["status" => "error", "message" => "Invalid data"]);
 }
 
-// Close connection
+// Close the database connection
 $conn->close();
 ?>
