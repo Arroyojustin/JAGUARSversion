@@ -1,4 +1,4 @@
-<div class="container-fluid p-0 m-0" id="qqr" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh;">
+<!-- <div class="container-fluid p-0 m-0" id="qqr" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh;">
   <h1 class="qr-heading">Attendance</h1>
     <div id="qr-reader" style="width: 300px;"></div>
     <div id="result">
@@ -39,4 +39,4 @@
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
       displayError("Camera access is not supported in your browser. Please try another browser.");
     }
-  </script>
+  </script> -->

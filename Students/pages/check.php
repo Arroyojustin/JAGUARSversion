@@ -17,9 +17,9 @@
     </div>
 
     <!-- QR Icon -->
-    <div class="qr-icon" style="position: fixed; bottom: 20px; left: 20px; font-size: 36px;" onclick="showSection(event, 'qqr')">
+    <!-- <div class="qr-icon" style="position: fixed; bottom: 20px; left: 20px; font-size: 36px;" onclick="showSection(event, 'qqr')">
         <i class="bx bx-qr"></i>
-    </div>
+    </div> -->
 </div>
 
 <!-- Modal -->

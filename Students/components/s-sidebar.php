@@ -36,7 +36,7 @@
         }
 
         // Hide all sections
-        document.querySelectorAll('#homes, #check, #injury, #stud-profile, #qqr').forEach(section => {
+        document.querySelectorAll('#homes, #check, #injury, #stud-profile').forEach(section => {
             section.style.display = 'none';
         });
 

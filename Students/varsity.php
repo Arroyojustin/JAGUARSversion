@@ -68,7 +68,6 @@
                  <div id="page-content" style="width: 100%;">
                  <?php include "pages/homes.php"; ?>
                  <?php include "pages/check.php"; ?>
-                 <?php include "pages/qr-scan.php"; ?>
                  <?php include "pages/injury.php"; ?>
                  <?php include "pages/s-profile.php"; ?>
 
