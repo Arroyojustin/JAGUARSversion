@@ -1,4 +1,3 @@
-
 <?php
 // Include database connection
 require '../../dbconn.php';
