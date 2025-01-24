@@ -1,32 +1,29 @@
 <?php
-require '../../dbconn.php'; // Include your centralized database connection file
+// Database connection
+require '../../dbconn.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $data = json_decode(file_get_contents("php://input"), true);
-    $qrCode = $data['qrCode'];
-
-    // Ensure the QR code data is provided
-    if (empty($qrCode)) {
-        echo json_encode(["success" => false, "error" => "Invalid QR code"]);
-        exit;
-    }
-
-    // Insert attendance into the database
-    $stmt = $conn->prepare("INSERT INTO attendance (student_id, date_time) VALUES (?, NOW())");
-    if (!$stmt) {
-        echo json_encode(["success" => false, "error" => $conn->error]);
-        exit;
-    }
-
-    $stmt->bind_param("s", $qrCode);
-
-    if ($stmt->execute()) {
-        echo json_encode(["success" => true]);
-    } else {
-        echo json_encode(["success" => false, "error" => $stmt->error]);
-    }
-
-    $stmt->close();
-    $conn->close();
+// Check connection
+if ($conn->connect_error) {
+    die(json_encode(['success' => false, 'message' => 'Database connection failed']));
 }
+
+// Get JSON input
+$data = json_decode(file_get_contents('php://input'), true);
+
+if (isset($data['student_id']) && !empty($data['student_id'])) {
+    $student_id = $conn->real_escape_string($data['student_id']);
+
+    // Insert into attendance table
+    $sql = "INSERT INTO attendance (student_id) VALUES ('$student_id')";
+    if ($conn->query($sql) === TRUE) {
+        echo json_encode(['success' => true, 'message' => 'Attendance marked successfully']);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Failed to mark attendance']);
+    }
+} else {
+    echo json_encode(['success' => false, 'message' => 'Invalid student ID']);
+}
+
+// Close connection
+$conn->close();
 ?>
