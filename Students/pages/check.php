@@ -4,7 +4,7 @@
             <table class="table table-responsive" style="font-size: 19px; width: 60%; box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;">
                 <thead class="table-light">
                     <tr>
-                        <th class="training text-start" style="padding-right: 20px; width:100%;">Training</th>
+                        <th class="training text-start" style="padding-right: 20px; width:100%;">Attendance Training</th>
                     </tr>
                 </thead>
                 <tbody id="training-tbody">
