@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 24, 2025 at 06:10 AM
+-- Generation Time: Jan 24, 2025 at 06:34 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -170,7 +170,7 @@ CREATE TABLE `training` (
 --
 
 INSERT INTO `training` (`TrainingID`, `Date`, `Time`, `Title`, `Location`, `Status`, `created_by`) VALUES
-(14, '2025-01-23', '15:16:00', '', 'Golden City Club House', 'Pending', 77);
+(23, '2025-01-25', '13:34:00', 'day 1', 'school', 'Pending', 77);
 
 -- --------------------------------------------------------
 
@@ -337,7 +337,7 @@ ALTER TABLE `sports`
 -- AUTO_INCREMENT for table `training`
 --
 ALTER TABLE `training`
-  MODIFY `TrainingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `TrainingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `users`
