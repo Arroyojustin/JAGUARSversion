@@ -1,8 +1,7 @@
 let scanner;
-        
-        // Function to start the QR Code scanner
+
+        // Function to start the QR Code scanner automatically
         function startScanner() {
-            document.getElementById("scanners").style.display = "block";  // Show the scanner section
             const videoElement = document.getElementById("qr-video");
 
             // Initialize the QR scanner
@@ -37,3 +36,9 @@ let scanner;
             document.getElementById("scanners").style.display = "none"; // Hide the scanner
             scanner.clear();  // Stop the scanner
         }
+
+        // Automatically start scanning when the page loads
+        window.onload = function() {
+            document.getElementById("scanners").style.display = "block";  // Show the scanner section
+            startScanner();  // Start the scanner
+        };
