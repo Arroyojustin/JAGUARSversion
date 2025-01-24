@@ -1,37 +1,39 @@
-// Function to start the QR Code scanner
-function startQRCodeScanner() {
-    const qrCodeReader = new Html5Qrcode("qr-reader");
+let scanner;
+        
+        // Function to start the QR Code scanner
+        function startScanner() {
+            document.getElementById("scanners").style.display = "block";  // Show the scanner section
+            const videoElement = document.getElementById("qr-video");
 
-    // Start scanning using the rear camera
-    qrCodeReader.start(
-        { facingMode: "environment" }, // Use rear camera
-        {
-            fps: 10,  // Frames per second
-            qrbox: 250 // Size of the scanning box
-        },
-        (decodedText, decodedResult) => {
-            // Handle the QR code result here
-            console.log(decodedText);  // For debugging
+            // Initialize the QR scanner
+            scanner = new Html5QrcodeScanner("qr-video", {
+                fps: 10, // Frames per second
+                qrbox: 250, // Size of the scanning box
+                aspectRatio: 1.0
+            });
 
-            // Example: Mark attendance based on decoded QR code
-            markAttendance(decodedText);
-        },
-        (errorMessage) => {
-            console.error(errorMessage); // In case of error
+            // Start the scanner with the rear camera
+            scanner.render(onScanSuccess, onScanError);
         }
-    ).catch((err) => {
-        console.error(err); // If scanning fails
-    });
-}
 
-// Function to mark attendance (example)
-function markAttendance(studentId) {
-    alert("Attendance marked for student ID: " + studentId);
-}
+        // Function to handle successful scan
+        function onScanSuccess(decodedText, decodedResult) {
+            document.getElementById("scan-result").innerText = `Scanned Result: ${decodedText}`;
+            markAttendance(decodedText);
+        }
 
-// Show the scanner when the button is clicked
-function showScanner() {
-    // Show the QR scanner section
-    document.getElementById("scanners").style.display = "block";  
-    startQRCodeScanner();  // Start the QR code scanning
-}
+        // Function to handle scan errors
+        function onScanError(errorMessage) {
+            console.error("Scan error:", errorMessage);
+        }
+
+        // Function to mark attendance (you can extend this as needed)
+        function markAttendance(studentId) {
+            alert("Attendance marked for student ID: " + studentId);
+        }
+
+        // Function to hide the scanner when the back button is clicked
+        function hideScanner() {
+            document.getElementById("scanners").style.display = "none"; // Hide the scanner
+            scanner.clear();  // Stop the scanner
+        }
