@@ -1,45 +1,44 @@
-function onScanSuccess(decodedText, decodedResult) {
-    // Here, the decodedText is the student QR code data, which could be student ID or another identifier
-    console.log("QR Code decoded: " + decodedText);
+ // Function to initialize the QR Scanner
+ function startQRScanner() {
+    // Select the video element where the camera feed will be shown
+    const videoElem = document.getElementById('qr-video');
     
-    // Send the QR code data to PHP to mark attendance
-    markAttendance(decodedText);
-    
-    // Optionally, stop scanning after successful scan
-    html5QrCode.stop().then((ignore) => {
-        console.log("QR Code scanning stopped.");
-    }).catch((err) => {
-        console.error("Error stopping scanner", err);
+    // Create an instance of the QR scanner with a callback to handle the scanned result
+    const qrScanner = new QrScanner(videoElem, result => {
+        // Display the result from the QR code scan
+        document.getElementById('scan-result').innerText = `Student ID: ${result}`;
+
+        // Send the scanned student ID to the server
+        markAttendance(result);
+    });
+
+    // Start the camera for scanning QR codes
+    qrScanner.start();
+}
+
+// Function to send the student ID to the server and mark attendance
+function markAttendance(studentId) {
+    // Create a FormData object to send the student ID to the server via POST
+    const formData = new FormData();
+    formData.append('student_id', studentId);
+
+    // Use Fetch API to send a POST request to the server
+    fetch('controller/scanner.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text()) // Get the response text
+    .then(data => {
+        // Display the server's response (Success or Error message)
+        alert(data);
+    })
+    .catch(error => {
+        console.error('Error marking attendance:', error);
+        alert('Error marking attendance.');
     });
 }
 
-function markAttendance(studentId) {
-    // Send the studentId to PHP for attendance processing
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST", "controller/scanner.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            alert("Attendance marked for student: " + studentId);
-            // Additional logic for marking attendance
-        }
-    };
-    xhr.send("student_id=" + encodeURIComponent(studentId));
-}
-
-function onScanError(errorMessage) {
-    // Handle scan errors
-    console.error(errorMessage);
-}
-
-// Initialize the QR code scanner when the page is ready
+// Start the QR scanner when the page is loaded
 window.onload = function() {
-    var html5QrCode = new Html5Qrcode("reader");
-    var config = { fps: 10, qrbox: 250 };
-    
-    // Start the camera and scan the QR code
-    html5QrCode.start({ facingMode: "environment" }, config, onScanSuccess, onScanError)
-        .catch((err) => {
-            console.error("Error starting QR code scanner", err);
-        });
-}
+    startQRScanner();
+};

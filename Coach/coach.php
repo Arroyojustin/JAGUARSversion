@@ -81,7 +81,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://kit.fontawesome.com/29c04b1733.js" crossorigin="anonymous"></script>
     <script src="../assets/js/sidebar.js"></script>
-    <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
+    <script src="https://unpkg.com/qr-scanner/qr-scanner.min.js"></script>
     
     
 
