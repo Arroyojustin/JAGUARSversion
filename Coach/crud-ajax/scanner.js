@@ -1,12 +1,11 @@
-// Function to handle successful QR code scan
 function onScanSuccess(decodedText, decodedResult) {
-    // decodedText will be the student QR code data, e.g., student ID
+    // Here, the decodedText is the student QR code data, which could be student ID or another identifier
     console.log("QR Code decoded: " + decodedText);
     
-    // Call function to mark attendance for the student
+    // Send the QR code data to PHP to mark attendance
     markAttendance(decodedText);
     
-    // Optionally, stop the scanner after successful scan
+    // Optionally, stop scanning after successful scan
     html5QrCode.stop().then((ignore) => {
         console.log("QR Code scanning stopped.");
     }).catch((err) => {
@@ -14,41 +13,33 @@ function onScanSuccess(decodedText, decodedResult) {
     });
 }
 
-// Function to send scanned student ID to PHP to mark attendance
 function markAttendance(studentId) {
-    // Send the student ID to PHP for processing attendance
+    // Send the studentId to PHP for attendance processing
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "controller/scanner.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             alert("Attendance marked for student: " + studentId);
-            // Additional logic for marking attendance, if needed
+            // Additional logic for marking attendance
         }
     };
     xhr.send("student_id=" + encodeURIComponent(studentId));
 }
 
-// Handle QR scan errors
 function onScanError(errorMessage) {
+    // Handle scan errors
     console.error(errorMessage);
 }
 
-// Initialize QR code scanner
+// Initialize the QR code scanner when the page is ready
 window.onload = function() {
     var html5QrCode = new Html5Qrcode("reader");
+    var config = { fps: 10, qrbox: 250 };
     
-    // Configure the QR scanner
-    var config = {
-        fps: 10,  // Frames per second for scanning
-        qrbox: 250  // Box size for the scanner
-    };
-    
-    // Start the scanner using the camera
+    // Start the camera and scan the QR code
     html5QrCode.start({ facingMode: "environment" }, config, onScanSuccess, onScanError)
-    .then((_) => {
-        // Scanning started successfully
-    }).catch((err) => {
-        console.error("Error starting QR scanner", err);
-    });
-};
+        .catch((err) => {
+            console.error("Error starting QR code scanner", err);
+        });
+}
