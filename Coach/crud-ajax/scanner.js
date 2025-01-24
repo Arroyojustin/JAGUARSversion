@@ -1,20 +1,19 @@
-// Initialize the QR Code scanner
+// Function to start the QR Code scanner
 function startQRCodeScanner() {
     const qrCodeReader = new Html5Qrcode("qr-reader");
 
-    // Start scanning
+    // Start scanning using the rear camera
     qrCodeReader.start(
-        { facingMode: "environment" }, // Use the rear camera
+        { facingMode: "environment" }, // Use rear camera
         {
             fps: 10,  // Frames per second
-            qrbox: 250 // The size of the scanning box
+            qrbox: 250 // Size of the scanning box
         },
         (decodedText, decodedResult) => {
             // Handle the QR code result here
             console.log(decodedText);  // For debugging
 
-            // Example: If you want to log the student ID based on QR code data
-            // You can call a function here to mark attendance
+            // Example: Mark attendance based on decoded QR code
             markAttendance(decodedText);
         },
         (errorMessage) => {
@@ -25,16 +24,14 @@ function startQRCodeScanner() {
     });
 }
 
-// Example function to mark attendance (this can be expanded as needed)
+// Function to mark attendance (example)
 function markAttendance(studentId) {
     alert("Attendance marked for student ID: " + studentId);
 }
 
-// Call this function when the section is shown
+// Show the scanner when the button is clicked
 function showScanner() {
-    document.getElementById("scanners").style.display = "block";  // Show scanner section
-    startQRCodeScanner();  // Start scanning
+    // Show the QR scanner section
+    document.getElementById("scanners").style.display = "block";  
+    startQRCodeScanner();  // Start the QR code scanning
 }
-
-// Show the scanner when needed
-showScanner();
