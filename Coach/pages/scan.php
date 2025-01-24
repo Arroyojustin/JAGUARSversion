@@ -6,12 +6,14 @@
     </div>
 </div> -->
 
-<div class="container-fluid p-0 m-0" id="scanners" style="display: block;">
+<div class="container-fluid p-0 m-0" id="scanners" style="display: none;">
         <div class="custom-scan-container"> 
             <h1 class="custom-scan-h1">Attendance</h1>
-            <!-- Video element to display the camera feed -->
-            <video id="qr-video" style="width: 100%; height: auto;"></video>
-            <p id="scan-result" style="font-size: 18px; margin-top: 10px;">Scanning QR Code...</p>
+            
+            <!-- Upload button for QR code image -->
+            <input type="file" id="file-upload" accept="image/*" onchange="handleFileUpload(event)">
+            <p id="scan-result" style="font-size: 18px; margin-top: 10px;">Upload a QR Code to Scan</p>
+            <p id="user-info" style="font-size: 18px; margin-top: 10px;">User Info will be displayed here after scanning</p>
         </div>
         <div class="custom-scan-footer">
             <button class="btn btn-secondary custom-back-button" onclick="hideScanner()">Back</button>

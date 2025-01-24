@@ -1,6 +1,6 @@
 let scanner;
 
-        // Function to start the QR Code scanner automatically
+        // Function to start the QR Code scanner (camera mode)
         function startScanner() {
             const videoElement = document.getElementById("qr-video");
 
@@ -37,8 +37,34 @@ let scanner;
             scanner.clear();  // Stop the scanner
         }
 
-        // Automatically start scanning when the page loads
+        // Function to handle the file upload and process the QR code from the uploaded image
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) {
+                return;
+            }
+            
+            // Create a file reader to read the uploaded file
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imageUrl = e.target.result;
+
+                // Use Html5Qrcode to scan the uploaded image
+                Html5Qrcode.scanFile(imageUrl, true)
+                    .then((decodedText) => {
+                        document.getElementById("scan-result").innerText = `Scanned Result: ${decodedText}`;
+                        markAttendance(decodedText);
+                    })
+                    .catch((error) => {
+                        console.error("Scan error:", error);
+                        document.getElementById("scan-result").innerText = "Failed to scan the QR Code from the image.";
+                    });
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Automatically start scanning when the page loads (optional)
         window.onload = function() {
             document.getElementById("scanners").style.display = "block";  // Show the scanner section
-            startScanner();  // Start the scanner
+            startScanner();  // Start the camera scanner
         };
