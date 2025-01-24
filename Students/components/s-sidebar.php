@@ -13,10 +13,6 @@
             <i class='bx bx-calendar-check'></i>
             <span>Recorded</span>
         </a>
-        <a href="#" class="sidebar-link" onclick="showSection(event, 'injury')">
-            <i class="fa-solid fa-user-injured x0.4"></i>
-            <span>Injury Status</span>
-        </a>
     </nav>
 </div>
 
