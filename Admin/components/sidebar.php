@@ -9,10 +9,10 @@
             <i class="bx bx-home"></i>
             <span>Home</span>
         </a>
-        <a href="#" class="sidebar-link" onclick="showSection(event, 'history')">
+        <!-- <a href="#" class="sidebar-link" onclick="showSection(event, 'history')">
         <i class='bx bx-history'></i>
             <span>History</span>
-        </a>
+        </a> -->
         <a href="#" class="sidebar-link" onclick="showSection(event, 'adding')">
             <i class='bx bx-user-plus'></i>
             <span>Add Control</span>
