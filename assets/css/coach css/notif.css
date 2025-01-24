@@ -1,0 +1,19 @@
+.notif-post {
+    background-color: #ffffff; /* White background */
+    border-radius: 10px; /* Rounded corners */
+    padding: 8px 10px; /* Inner padding */
+    margin-bottom: 15px; /* Spacing between items */
+    box-shadow: rgba(83, 107, 126, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; /* Subtle shadow */
+    border-left: 5px solid #198754; /* Green left border */
+    position: relative; /* Ensure proper positioning */
+    display: flex; /* Enable Flexbox */
+    align-items: center; /* Vertically center content */
+    min-height: 60px; /* Set a minimum height */
+}
+
+.notif-post p {
+    margin: 0; /* Remove default margin */
+    font-size: 1rem; /* Adjust font size */
+    color: #343a40; /* Dark gray text */
+}
