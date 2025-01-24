@@ -33,6 +33,28 @@ $(document).ready(function() {
         });
     }
 
+    // Function to format the timestamp to 'MM/DD/YYYY 1 PM'
+    function formatTimestamp(timestamp) {
+        var date = new Date(timestamp);
+        
+        // Format date as MM/DD/YYYY
+        var month = date.toLocaleString('en-US', { month: 'short' });
+        var day = date.getDate();
+        var year = date.getFullYear();
+        var formattedDate = month + ' ' + day + ', ' + year;
+
+        // Format time as 1 PM (12-hour format)
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        var time = hours + ':' + minutes + ' ' + ampm;
+
+        return formattedDate + ' ' + time;
+    }
+
     // Function to update the attendance table with filtered data based on the current date
     function updateAttendanceTable(date, searchQuery = "") {
         var attendanceBody = $('#attendance-body');
@@ -52,7 +74,7 @@ $(document).ready(function() {
                 
                 var row = '<tr>';
                 row += '<td>' + item.student_id + '</td>';
-                row += '<td>' + item.timestamp + '</td>';
+                row += '<td>' + formatTimestamp(item.timestamp) + '</td>'; // Use the new formatTimestamp function
                 row += '</tr>';
                 attendanceBody.append(row);
             }
