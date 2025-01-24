@@ -121,5 +121,6 @@ header("Pragma: no-cache");
     <script src="function/cate-stud.js"></script>
     <script src="function/fetch-training.js"></script>
     <!--END::CRUD AJAX FUNCTIONS-->
+    <script src="function/date-attendance.js"></script>
 </body>
 </html>
