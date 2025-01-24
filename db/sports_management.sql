@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 22, 2025 at 04:41 PM
+-- Generation Time: Jan 24, 2025 at 06:34 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,6 +42,25 @@ CREATE TABLE `approvals` (
   `approved_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `approvals`
+--
+
+INSERT INTO `approvals` (`id`, `first_name`, `middle_initial`, `last_name`, `gender`, `sport_id`, `height`, `weight`, `bmi`, `phone_number`, `health_protocol`, `approved_at`) VALUES
+(95, 'sadasd', 'd', 'sadasdsa', 'male', 16, 34.00, 34.00, 345.00, '43242342', 'dsgfewrewfewfsdfes', '2025-01-24 04:23:40');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attendance`
+--
+
+CREATE TABLE `attendance` (
+  `id` int(11) NOT NULL,
+  `student_id` varchar(255) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- --------------------------------------------------------
 
 --
@@ -63,6 +82,27 @@ CREATE TABLE `coaches` (
 
 INSERT INTO `coaches` (`id`, `name`, `gender`, `sports_id`, `qr_code`, `user_id`) VALUES
 (10, 'Lucas Pablo', 'male', 16, NULL, 77);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `id` int(11) NOT NULL,
+  `message` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`id`, `message`, `created_at`) VALUES
+(47, 'bryan student', '2025-01-24 03:25:46'),
+(48, 'bryan poogi', '2025-01-24 03:26:02'),
+(49, 'dasdawdwdeqe', '2025-01-24 04:08:51');
 
 -- --------------------------------------------------------
 
@@ -130,7 +170,7 @@ CREATE TABLE `training` (
 --
 
 INSERT INTO `training` (`TrainingID`, `Date`, `Time`, `Title`, `Location`, `Status`, `created_by`) VALUES
-(14, '2025-01-23', '15:16:00', '', 'Golden City Club House', 'Pending', 77);
+(23, '2025-01-25', '13:34:00', 'day 1', 'school', 'Pending', 77);
 
 -- --------------------------------------------------------
 
@@ -155,33 +195,34 @@ CREATE TABLE `users` (
   `gender` enum('male','female','other') DEFAULT NULL,
   `civil_status` enum('single','married','divorced','widowed') DEFAULT NULL,
   `profile_photo` varchar(255) DEFAULT NULL,
-  `sports_id` int(11) DEFAULT NULL
+  `sports_id` int(11) DEFAULT NULL,
+  `scholar` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `lastname`, `firstname`, `middle_initial`, `student_no`, `weight`, `height`, `bmi`, `bloodtype`, `phone_no`, `email`, `password`, `user_type`, `gender`, `civil_status`, `profile_photo`, `sports_id`) VALUES
-(1, 'Lleve', 'Shelalin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin@edu.ph', '$2y$10$2ey6fmYSA4xnxIPVp2qRG.Gqt1k1BdGNF7fvBR1835GpQfSSABtVq', 'admin', 'female', 'married', NULL, NULL),
-(7, 'Perez', 'Jerome', '', NULL, NULL, NULL, NULL, NULL, '', 'coor@edu.ph', '$2y$10$zpyfExl.dISoTv65SkzIzOgQsxw/ON3YgLwjnwRB3osJcuhe3yE6u', 'coordinator', 'male', 'single', NULL, NULL),
-(55, 'Payos', 'John Paul ', 'R', '1-210134', 0.00, 0.00, 0.00, NULL, '09987876833', '1-210134@edu.ph', '$2y$10$8qmOXHqriaQ1CsNWHxlwwO5cYcmqVklHu6.ipbMZfDL8GCSwfDH9a', 'student', 'male', NULL, NULL, 16),
-(56, 'Custodio', 'Bryan', 'G', '1-210136', 0.00, 0.00, 0.00, NULL, '09888888888', '1-210136@edu.ph', '$2y$10$kR0qcZU3cmmG0TVQ1ehrquy4C505Be1wdL0yG7gtRdR2Wxox3/huC', 'student', 'male', NULL, NULL, 16),
-(57, 'Arroyo', 'Randy', 'B', '1-131413', 0.00, 0.00, 0.00, NULL, '0906837106', '1-210137@edu.ph', '$2y$10$Vm7M9rfUwJfxNsRWARuFdud1SbGuoAn4Cfxl/vYyXaL47.DOQ/wJu', 'student', 'male', NULL, NULL, 16),
-(58, 'Graham', 'Lucas', 'G', '1-231414', 0.00, 0.00, 0.00, NULL, '09068377106', '1-210138@edu.ph', '$2y$10$TpnzzpRtPJ3BsS6O9mXsB.wjXnkvAXntImqgQVo5rorUvvzMWCto2', 'student', 'male', NULL, NULL, 16),
-(59, 'sfsfas', 'uyiyuk', 'q', '1-234242', 0.00, 0.00, 0.00, NULL, '09361133235', '1-210139@edu.ph', '$2y$10$lRE8XYmlGKzK/g5JtWXF7.Tph6knDYMOVYCwXMHhX8hnH7w.GsXya', 'student', 'male', NULL, NULL, 16),
-(60, 'timberlake', 'Justin', 'E', '1-23131', 0.00, 0.00, 0.00, NULL, '09068377106', '213123@edu.ph', '$2y$10$9IS7Rc.gUTEMgs/Tkchg0ueZ0lZVfCb6Qv6E3gG6KsSuVgHMds99C', 'student', 'male', NULL, NULL, 16),
-(61, 'wefgaseaw', 'aefewfaewg', 'a', '1-231241', 0.00, 0.00, 0.00, NULL, '09068377106', '3e3qdrfw@edu.ph', '$2y$10$eu6UTjhHKgdo//9wAHiRxeQIiFGocPfCMIs7fQ514LT61iQuDuEOy', 'student', 'male', NULL, NULL, 17),
-(62, 'Balauag', 'George', 'D', '1-231311', 0.00, 0.00, 0.00, NULL, '0987876612', 'swfwrr22@edu.ph', '$2y$10$H9MNfgd5kOlT/aJFxznUNe.YVJA48PxKsrLORqKn7wvt9BLerbBU2', 'student', 'male', NULL, NULL, 18),
-(63, 'gers', 'nigga', 'r', '1-231412', 0.00, 0.00, 0.00, NULL, '09361133235', '2312314s@edu.ph', '$2y$10$lotXOXlprlZ0aoGynb7tSOWNPw.K2zPex8LaBF5jfWhkpJWdF9oSq', 'student', 'male', NULL, NULL, 19),
-(64, 'Curry', 'Stephen', 'q', '1-214131', 0.00, 0.00, 0.00, NULL, '09361133235', 'qedqawq2e@edu.ph', '$2y$10$SBFyAGTBvY95gIDjeeldVOQgDgA9a3wTZxAAgkILIZfPVIv9Oy53G', 'student', 'male', NULL, NULL, 16),
-(65, 'Curry', 'Stephen', 'q', '1-214131', 0.00, 0.00, 0.00, NULL, '09361133235', 'qedqawq2e@edu.ph', '$2y$10$UzPxSYqrujmH8a/JmZdUouPo0cu1JOZkQzFE5Z70.Wh8qmwQy4BHy', 'student', 'male', NULL, NULL, 16),
-(66, 'jordan', 'michael ', 'E', '1-214131', 0.00, 0.00, 0.00, NULL, '0906837106', 'qedqawq2e@edu.ph', '$2y$10$CFYqyhATgjrIeyLrn6b7Tef7e7YLmke2DDcuhDLU6IjU4bIP0vZBO', 'student', 'male', NULL, NULL, 16),
-(67, 'Esteron', 'jedan', 'A', '1-214131', 0.00, 0.00, 0.00, NULL, '0906837106', 'qedqawq2e@edu.ph', '$2y$10$HS4ypYx4ZiJc2HTFK2w5XuxxnautZTJTgJem6VWdDdo7M6.Kx0X8O', 'student', 'male', NULL, NULL, 16),
-(68, 'Antonio', 'dave', 'A', '1-214131', 0.00, 0.00, 0.00, NULL, '09367957034', 'qedqawq2e@edu.ph', '$2y$10$ioxoQdXOdkexbpE4UFn98OdGzBVcx2cCa6/3Q3HMLgg9nPGeoQKYm', 'student', 'male', NULL, NULL, 16),
-(70, 'Gojo', 'satoru', 'J', '1-214131', 0.00, 0.00, 0.00, NULL, '09369007677', 'qedqawq2e@edu.ph', '$2y$10$FJuIk2zinSxEQwfwttope.Eo58itwYpAIhpw5If3ZwnRD2uR6yxcG', 'student', 'male', NULL, NULL, 16),
-(71, 'ka girl', 'lupaypay', 'b', '1-231445', 0.00, 0.00, 0.00, NULL, '0906837106', 'huehq8yygwub@edu.ph', '$2y$10$ehe4er13V5xTbh4VzpqSm.Hx3DXHlynGJjFz8e/I24QZoSzGG71cK', 'student', 'male', NULL, NULL, 18),
-(77, 'Pablo', 'Lucas', 'M', NULL, NULL, NULL, NULL, NULL, '09367957034', 'Lucs@gmail.com', '$2y$10$vhTXkQuyBVH3CqhlpW1iSejq.G0mq7TQDarJEA4Ppa8Mw7Bpxas1u', 'coach', 'male', NULL, NULL, 16);
+INSERT INTO `users` (`id`, `lastname`, `firstname`, `middle_initial`, `student_no`, `weight`, `height`, `bmi`, `bloodtype`, `phone_no`, `email`, `password`, `user_type`, `gender`, `civil_status`, `profile_photo`, `sports_id`, `scholar`) VALUES
+(1, 'Lleve', 'Shelalin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin@edu.ph', '$2y$10$2ey6fmYSA4xnxIPVp2qRG.Gqt1k1BdGNF7fvBR1835GpQfSSABtVq', 'admin', 'female', 'married', NULL, NULL, NULL),
+(7, 'Perez', 'Jerome', '', NULL, NULL, NULL, NULL, NULL, '', 'coor@edu.ph', '$2y$10$zpyfExl.dISoTv65SkzIzOgQsxw/ON3YgLwjnwRB3osJcuhe3yE6u', 'coordinator', 'male', 'single', NULL, NULL, NULL),
+(55, 'Payos', 'John Paul ', 'R', '1-210134', 0.00, 0.00, 0.00, NULL, '09987876833', '1-210134@edu.ph', '$2y$10$8qmOXHqriaQ1CsNWHxlwwO5cYcmqVklHu6.ipbMZfDL8GCSwfDH9a', 'student', 'male', NULL, NULL, 16, '60%'),
+(56, 'Custodio', 'Bryan', 'G', '1-210136', 0.00, 0.00, 0.00, NULL, '09888888888', '1-210136@edu.ph', '$2y$10$kR0qcZU3cmmG0TVQ1ehrquy4C505Be1wdL0yG7gtRdR2Wxox3/huC', 'student', 'male', NULL, NULL, 16, NULL),
+(57, 'Arroyo', 'Randy', 'B', '1-131413', 0.00, 0.00, 0.00, NULL, '0906837106', '1-210137@edu.ph', '$2y$10$Vm7M9rfUwJfxNsRWARuFdud1SbGuoAn4Cfxl/vYyXaL47.DOQ/wJu', 'student', 'male', NULL, NULL, 16, NULL),
+(58, 'Graham', 'Lucas', 'G', '1-231414', 0.00, 0.00, 0.00, NULL, '09068377106', '1-210138@edu.ph', '$2y$10$TpnzzpRtPJ3BsS6O9mXsB.wjXnkvAXntImqgQVo5rorUvvzMWCto2', 'student', 'male', NULL, NULL, 16, NULL),
+(59, 'sfsfas', 'uyiyuk', 'q', '1-234242', 0.00, 0.00, 0.00, NULL, '09361133235', '1-210139@edu.ph', '$2y$10$lRE8XYmlGKzK/g5JtWXF7.Tph6knDYMOVYCwXMHhX8hnH7w.GsXya', 'student', 'male', NULL, NULL, 16, NULL),
+(60, 'timberlake', 'Justin', 'E', '1-23131', 0.00, 0.00, 0.00, NULL, '09068377106', '213123@edu.ph', '$2y$10$9IS7Rc.gUTEMgs/Tkchg0ueZ0lZVfCb6Qv6E3gG6KsSuVgHMds99C', 'student', 'male', NULL, NULL, 16, NULL),
+(61, 'wefgaseaw', 'aefewfaewg', 'a', '1-231241', 0.00, 0.00, 0.00, NULL, '09068377106', '3e3qdrfw@edu.ph', '$2y$10$eu6UTjhHKgdo//9wAHiRxeQIiFGocPfCMIs7fQ514LT61iQuDuEOy', 'student', 'male', NULL, NULL, 17, NULL),
+(62, 'Balauag', 'George', 'D', '1-231311', 0.00, 0.00, 0.00, NULL, '0987876612', 'swfwrr22@edu.ph', '$2y$10$H9MNfgd5kOlT/aJFxznUNe.YVJA48PxKsrLORqKn7wvt9BLerbBU2', 'student', 'male', NULL, NULL, 18, NULL),
+(63, 'gers', 'nigga', 'r', '1-231412', 0.00, 0.00, 0.00, NULL, '09361133235', '2312314s@edu.ph', '$2y$10$lotXOXlprlZ0aoGynb7tSOWNPw.K2zPex8LaBF5jfWhkpJWdF9oSq', 'student', 'male', NULL, NULL, 19, NULL),
+(64, 'Curry', 'Stephen', 'q', '1-214131', 0.00, 0.00, 0.00, NULL, '09361133235', 'qedqawq2e@edu.ph', '$2y$10$SBFyAGTBvY95gIDjeeldVOQgDgA9a3wTZxAAgkILIZfPVIv9Oy53G', 'student', 'male', NULL, NULL, 16, NULL),
+(65, 'Curry', 'Stephen', 'q', '1-214131', 0.00, 0.00, 0.00, NULL, '09361133235', 'qedqawq2e@edu.ph', '$2y$10$UzPxSYqrujmH8a/JmZdUouPo0cu1JOZkQzFE5Z70.Wh8qmwQy4BHy', 'student', 'male', NULL, NULL, 16, NULL),
+(66, 'jordan', 'michael ', 'E', '1-214131', 0.00, 0.00, 0.00, NULL, '0906837106', 'qedqawq2e@edu.ph', '$2y$10$CFYqyhATgjrIeyLrn6b7Tef7e7YLmke2DDcuhDLU6IjU4bIP0vZBO', 'student', 'male', NULL, NULL, 16, NULL),
+(67, 'Esteron', 'jedan', 'A', '1-214131', 0.00, 0.00, 0.00, NULL, '0906837106', 'qedqawq2e@edu.ph', '$2y$10$HS4ypYx4ZiJc2HTFK2w5XuxxnautZTJTgJem6VWdDdo7M6.Kx0X8O', 'student', 'male', NULL, NULL, 16, NULL),
+(68, 'Antonio', 'dave', 'A', '1-214131', 0.00, 0.00, 0.00, NULL, '09367957034', 'qedqawq2e@edu.ph', '$2y$10$ioxoQdXOdkexbpE4UFn98OdGzBVcx2cCa6/3Q3HMLgg9nPGeoQKYm', 'student', 'male', NULL, NULL, 16, NULL),
+(70, 'Gojo', 'satoru', 'J', '1-214131', 0.00, 0.00, 0.00, NULL, '09369007677', 'qedqawq2e@edu.ph', '$2y$10$FJuIk2zinSxEQwfwttope.Eo58itwYpAIhpw5If3ZwnRD2uR6yxcG', 'student', 'male', NULL, NULL, 16, NULL),
+(71, 'ka girl', 'lupaypay', 'b', '1-231445', 0.00, 0.00, 0.00, NULL, '0906837106', 'huehq8yygwub@edu.ph', '$2y$10$ehe4er13V5xTbh4VzpqSm.Hx3DXHlynGJjFz8e/I24QZoSzGG71cK', 'student', 'male', NULL, NULL, 18, NULL),
+(77, 'Pablo', 'Lucas', 'M', NULL, NULL, NULL, NULL, NULL, '09367957034', 'Lucs@gmail.com', '$2y$10$vhTXkQuyBVH3CqhlpW1iSejq.G0mq7TQDarJEA4Ppa8Mw7Bpxas1u', 'coach', 'male', NULL, NULL, 16, NULL);
 
 --
 -- Triggers `users`
@@ -208,11 +249,23 @@ ALTER TABLE `approvals`
   ADD KEY `fk_approvals_sport_id` (`sport_id`);
 
 --
+-- Indexes for table `attendance`
+--
+ALTER TABLE `attendance`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `coaches`
 --
 ALTER TABLE `coaches`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `requirements`
@@ -248,13 +301,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `approvals`
 --
 ALTER TABLE `approvals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+
+--
+-- AUTO_INCREMENT for table `attendance`
+--
+ALTER TABLE `attendance`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `coaches`
 --
 ALTER TABLE `coaches`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `requirements`
@@ -272,7 +337,7 @@ ALTER TABLE `sports`
 -- AUTO_INCREMENT for table `training`
 --
 ALTER TABLE `training`
-  MODIFY `TrainingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `TrainingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `users`
