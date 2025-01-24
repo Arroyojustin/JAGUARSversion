@@ -25,10 +25,10 @@
              <i class='bx bxs-user-plus'></i>
             <span>Add List</span>
         </a>
-        <a href="#" class="sidebar-link" onclick="showSection(event, 'train-approve')">
+        <!-- <a href="#" class="sidebar-link" onclick="showSection(event, 'train-approve')">
          <i class='bx bx-check-double'></i>
             <span>Approval</span>
-        </a>
+        </a> -->
     </nav>
 </div>
 

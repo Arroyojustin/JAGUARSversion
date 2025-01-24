@@ -122,6 +122,7 @@ header("Pragma: no-cache");
     <script src="function/fetch-training.js"></script>
     <!--END::CRUD AJAX FUNCTIONS-->
     <script src="function/retrieve-stud.js"></script>
+    <script src="function/var-count.js"></script>
 
 </body>
 </html>

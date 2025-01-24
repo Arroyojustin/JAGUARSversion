@@ -1,4 +1,12 @@
 #chart {
-    max-width: 600px;
-    width: 100%;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto; /* Center the chart */
+}
+
+@media screen and (max-width: 480px) {
+  #chart {
+      max-width: 350px; /* Adjust width for smaller screens */
+      padding: 10px;
   }
+}

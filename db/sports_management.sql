@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 24, 2025 at 06:34 AM
+-- Generation Time: Jan 25, 2025 at 12:56 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,13 +42,6 @@ CREATE TABLE `approvals` (
   `approved_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `approvals`
---
-
-INSERT INTO `approvals` (`id`, `first_name`, `middle_initial`, `last_name`, `gender`, `sport_id`, `height`, `weight`, `bmi`, `phone_number`, `health_protocol`, `approved_at`) VALUES
-(95, 'sadasd', 'd', 'sadasdsa', 'male', 16, 34.00, 34.00, 345.00, '43242342', 'dsgfewrewfewfsdfes', '2025-01-24 04:23:40');
-
 -- --------------------------------------------------------
 
 --
@@ -81,7 +74,8 @@ CREATE TABLE `coaches` (
 --
 
 INSERT INTO `coaches` (`id`, `name`, `gender`, `sports_id`, `qr_code`, `user_id`) VALUES
-(10, 'Lucas Pablo', 'male', 16, NULL, 77);
+(10, 'Lucas Pablo', 'male', 16, NULL, 77),
+(11, 'tania hernandez', 'female', 17, NULL, 79);
 
 -- --------------------------------------------------------
 
@@ -100,9 +94,7 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`id`, `message`, `created_at`) VALUES
-(47, 'bryan student', '2025-01-24 03:25:46'),
-(48, 'bryan poogi', '2025-01-24 03:26:02'),
-(49, 'dasdawdwdeqe', '2025-01-24 04:08:51');
+(50, 'Hello ', '2025-01-24 23:44:44');
 
 -- --------------------------------------------------------
 
@@ -206,23 +198,12 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `lastname`, `firstname`, `middle_initial`, `student_no`, `weight`, `height`, `bmi`, `bloodtype`, `phone_no`, `email`, `password`, `user_type`, `gender`, `civil_status`, `profile_photo`, `sports_id`, `scholar`) VALUES
 (1, 'Lleve', 'Shelalin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin@edu.ph', '$2y$10$2ey6fmYSA4xnxIPVp2qRG.Gqt1k1BdGNF7fvBR1835GpQfSSABtVq', 'admin', 'female', 'married', NULL, NULL, NULL),
 (7, 'Perez', 'Jerome', '', NULL, NULL, NULL, NULL, NULL, '', 'coor@edu.ph', '$2y$10$zpyfExl.dISoTv65SkzIzOgQsxw/ON3YgLwjnwRB3osJcuhe3yE6u', 'coordinator', 'male', 'single', NULL, NULL, NULL),
-(55, 'Payos', 'John Paul ', 'R', '1-210134', 0.00, 0.00, 0.00, NULL, '09987876833', '1-210134@edu.ph', '$2y$10$8qmOXHqriaQ1CsNWHxlwwO5cYcmqVklHu6.ipbMZfDL8GCSwfDH9a', 'student', 'male', NULL, NULL, 16, '60%'),
-(56, 'Custodio', 'Bryan', 'G', '1-210136', 0.00, 0.00, 0.00, NULL, '09888888888', '1-210136@edu.ph', '$2y$10$kR0qcZU3cmmG0TVQ1ehrquy4C505Be1wdL0yG7gtRdR2Wxox3/huC', 'student', 'male', NULL, NULL, 16, NULL),
-(57, 'Arroyo', 'Randy', 'B', '1-131413', 0.00, 0.00, 0.00, NULL, '0906837106', '1-210137@edu.ph', '$2y$10$Vm7M9rfUwJfxNsRWARuFdud1SbGuoAn4Cfxl/vYyXaL47.DOQ/wJu', 'student', 'male', NULL, NULL, 16, NULL),
-(58, 'Graham', 'Lucas', 'G', '1-231414', 0.00, 0.00, 0.00, NULL, '09068377106', '1-210138@edu.ph', '$2y$10$TpnzzpRtPJ3BsS6O9mXsB.wjXnkvAXntImqgQVo5rorUvvzMWCto2', 'student', 'male', NULL, NULL, 16, NULL),
-(59, 'sfsfas', 'uyiyuk', 'q', '1-234242', 0.00, 0.00, 0.00, NULL, '09361133235', '1-210139@edu.ph', '$2y$10$lRE8XYmlGKzK/g5JtWXF7.Tph6knDYMOVYCwXMHhX8hnH7w.GsXya', 'student', 'male', NULL, NULL, 16, NULL),
-(60, 'timberlake', 'Justin', 'E', '1-23131', 0.00, 0.00, 0.00, NULL, '09068377106', '213123@edu.ph', '$2y$10$9IS7Rc.gUTEMgs/Tkchg0ueZ0lZVfCb6Qv6E3gG6KsSuVgHMds99C', 'student', 'male', NULL, NULL, 16, NULL),
-(61, 'wefgaseaw', 'aefewfaewg', 'a', '1-231241', 0.00, 0.00, 0.00, NULL, '09068377106', '3e3qdrfw@edu.ph', '$2y$10$eu6UTjhHKgdo//9wAHiRxeQIiFGocPfCMIs7fQ514LT61iQuDuEOy', 'student', 'male', NULL, NULL, 17, NULL),
-(62, 'Balauag', 'George', 'D', '1-231311', 0.00, 0.00, 0.00, NULL, '0987876612', 'swfwrr22@edu.ph', '$2y$10$H9MNfgd5kOlT/aJFxznUNe.YVJA48PxKsrLORqKn7wvt9BLerbBU2', 'student', 'male', NULL, NULL, 18, NULL),
-(63, 'gers', 'nigga', 'r', '1-231412', 0.00, 0.00, 0.00, NULL, '09361133235', '2312314s@edu.ph', '$2y$10$lotXOXlprlZ0aoGynb7tSOWNPw.K2zPex8LaBF5jfWhkpJWdF9oSq', 'student', 'male', NULL, NULL, 19, NULL),
-(64, 'Curry', 'Stephen', 'q', '1-214131', 0.00, 0.00, 0.00, NULL, '09361133235', 'qedqawq2e@edu.ph', '$2y$10$SBFyAGTBvY95gIDjeeldVOQgDgA9a3wTZxAAgkILIZfPVIv9Oy53G', 'student', 'male', NULL, NULL, 16, NULL),
-(65, 'Curry', 'Stephen', 'q', '1-214131', 0.00, 0.00, 0.00, NULL, '09361133235', 'qedqawq2e@edu.ph', '$2y$10$UzPxSYqrujmH8a/JmZdUouPo0cu1JOZkQzFE5Z70.Wh8qmwQy4BHy', 'student', 'male', NULL, NULL, 16, NULL),
-(66, 'jordan', 'michael ', 'E', '1-214131', 0.00, 0.00, 0.00, NULL, '0906837106', 'qedqawq2e@edu.ph', '$2y$10$CFYqyhATgjrIeyLrn6b7Tef7e7YLmke2DDcuhDLU6IjU4bIP0vZBO', 'student', 'male', NULL, NULL, 16, NULL),
-(67, 'Esteron', 'jedan', 'A', '1-214131', 0.00, 0.00, 0.00, NULL, '0906837106', 'qedqawq2e@edu.ph', '$2y$10$HS4ypYx4ZiJc2HTFK2w5XuxxnautZTJTgJem6VWdDdo7M6.Kx0X8O', 'student', 'male', NULL, NULL, 16, NULL),
-(68, 'Antonio', 'dave', 'A', '1-214131', 0.00, 0.00, 0.00, NULL, '09367957034', 'qedqawq2e@edu.ph', '$2y$10$ioxoQdXOdkexbpE4UFn98OdGzBVcx2cCa6/3Q3HMLgg9nPGeoQKYm', 'student', 'male', NULL, NULL, 16, NULL),
-(70, 'Gojo', 'satoru', 'J', '1-214131', 0.00, 0.00, 0.00, NULL, '09369007677', 'qedqawq2e@edu.ph', '$2y$10$FJuIk2zinSxEQwfwttope.Eo58itwYpAIhpw5If3ZwnRD2uR6yxcG', 'student', 'male', NULL, NULL, 16, NULL),
-(71, 'ka girl', 'lupaypay', 'b', '1-231445', 0.00, 0.00, 0.00, NULL, '0906837106', 'huehq8yygwub@edu.ph', '$2y$10$ehe4er13V5xTbh4VzpqSm.Hx3DXHlynGJjFz8e/I24QZoSzGG71cK', 'student', 'male', NULL, NULL, 18, NULL),
-(77, 'Pablo', 'Lucas', 'M', NULL, NULL, NULL, NULL, NULL, '09367957034', 'Lucs@gmail.com', '$2y$10$vhTXkQuyBVH3CqhlpW1iSejq.G0mq7TQDarJEA4Ppa8Mw7Bpxas1u', 'coach', 'male', NULL, NULL, 16, NULL);
+(77, 'Pablo', 'Lucas', 'M', NULL, NULL, NULL, NULL, NULL, '09367957034', 'Lucs@coach.com', '$2y$10$vhTXkQuyBVH3CqhlpW1iSejq.G0mq7TQDarJEA4Ppa8Mw7Bpxas1u', 'coach', 'male', NULL, NULL, 16, NULL),
+(79, 'hernandez', 'tania', 'S', NULL, NULL, NULL, NULL, NULL, '0987432178', 'tania@coach.ph', '$2y$10$AGLXAa7q/z28XHM7LF5JwOn/ooA6zWDui5z30DOAha5bfNz3NnkVe', 'coach', 'female', NULL, NULL, 17, NULL),
+(80, 'Arroyo', 'Justin', 'M', '1-210134', 62.00, 167.00, 22.23, NULL, '09068377106', '1-210134@edu.ph', '$2y$10$SnzT69HSHG5vH0TQHYl36u8qmO3ikkFW4pBQrAug/rwYCNA6w1nyu', 'student', 'male', NULL, NULL, 16, NULL),
+(81, 'Curry', 'Stephen', 'W', '1-231414', 57.00, 169.00, 19.96, NULL, '09367957034', '1-231414@edu.ph', '$2y$10$YEqYMXkya9Ib2jRqCy92f.VxowcE6Ns4Y5/QUjf3Kt2xCwkbM1gNG', 'student', 'male', NULL, NULL, 16, NULL),
+(82, 'Esteron', 'Aron', 'D', '1-210136', 45.00, 167.00, 16.14, NULL, '09369007677', '1-210136@edu.ph', '$2y$10$OAp1ZPqsM72rwe.wo6MSuO8B.jx8gTvyI9x53Xp7.7UT4S/im9F4G', 'student', 'male', NULL, NULL, 17, NULL),
+(83, 'Flaviano', 'Sharlene ', 'W', '1-234242', 55.00, 150.00, 24.44, NULL, '09367957034', '1-234242@edu.ph', '$2y$10$YaIJfoZ/iMly3fa1degmje.7pd/5EvxkDoFt4TSX0WXPuHaQOjNFa', 'student', 'female', NULL, NULL, 17, NULL);
 
 --
 -- Triggers `users`
@@ -301,31 +282,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `approvals`
 --
 ALTER TABLE `approvals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `coaches`
 --
 ALTER TABLE `coaches`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `requirements`
 --
 ALTER TABLE `requirements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT for table `sports`
@@ -343,7 +324,7 @@ ALTER TABLE `training`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- Constraints for dumped tables
