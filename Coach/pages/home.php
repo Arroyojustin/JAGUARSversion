@@ -1,5 +1,3 @@
-
-
 <div class="container-fluid p-0 m-0" id="coaches" style="display: none;">
   <div class="container mt-2">
     <!-- Input and Button at the Top, responsive layout -->
