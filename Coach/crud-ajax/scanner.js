@@ -1,60 +1,38 @@
-let scanner;
+function processQRCode(event) {
+    const file = event.target.files[0];
+    if (!file) return;
 
-    function startScanner() {
-        // Get the video element
-        const videoElement = document.getElementById("preview");
-        const resultsElement = document.getElementById("qr-reader-results");
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const img = new Image();
+        img.src = e.target.result;
 
-        // Initialize the Instascan scanner
-        scanner = new Instascan.Scanner({ video: videoElement });
+        img.onload = function() {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            context.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-        // Handle scanned QR code
-        scanner.addListener("scan", function (content) {
-            // Display scanned content
-            resultsElement.innerHTML = `
-                <div class="alert alert-success">
-                    QR Code Scanned: <strong>${content}</strong>
-                </div>`;
+            const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+            const qrCodeData = jsQR(imageData.data, canvas.width, canvas.height);
 
-            // Send scanned data to the server
-            fetch("controller/scanner.php", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ qrCode: content }),
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    if (data.success) {
-                        alert("Attendance marked successfully!");
-                    } else {
-                        alert("Failed to mark attendance. Error: " + data.error);
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error sending QR code to the server:", error);
-                });
-        });
-
-        // Get available cameras
-        Instascan.Camera.getCameras()
-            .then(function (cameras) {
-                if (cameras.length > 0) {
-                    // Use the first available camera
-                    scanner.start(cameras[0]);
-                } else {
-                    alert("No cameras found. Please connect a camera and refresh the page.");
-                }
-            })
-            .catch(function (error) {
-                console.error("Error accessing cameras:", error);
-            });
-    }
-
-    function stopScanner() {
-        if (scanner) {
-            scanner.stop();
-        }
-    }
-
-    // Start the scanner when the page loads
-    document.addEventListener("DOMContentLoaded", startScanner);
+            const resultDiv = document.getElementById('qrResult');
+            if (qrCodeData) {
+                resultDiv.style.display = 'block';
+                resultDiv.textContent = `QR Code Data: ${qrCodeData.data}`;
+                // Optional: send the data to the server for attendance marking
+                // Example:
+                // fetch('/mark-attendance', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify({ qrData: qrCodeData.data })
+                // });
+            } else {
+                resultDiv.style.display = 'block';
+                resultDiv.textContent = 'No valid QR code found in the image.';
+            }
+        };
+    };
+    reader.readAsDataURL(file);
+}
