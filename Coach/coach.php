@@ -84,10 +84,6 @@
     <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.min.js"></script>
     
 
-
-    
-    
-
     <!--START::CRUD AJAX FUNCTIONS-->
     <script src="crud-ajax/retrieve-stud.js"></script>
     <script src="crud-ajax/get-info.js"></script>
@@ -97,7 +93,6 @@
     <script src="crud-ajax/list-stud.js"></script>
     <script src="crud-ajax/post-notif.js"></script>
     <script src="crud-ajax/scanner.js"></script>
-
     
 </body>
 </html>
