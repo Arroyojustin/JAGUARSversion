@@ -91,6 +91,7 @@
     <script src="crud-ajax/date-time.js"></script>
     <script src="crud-ajax/calendar.js"></script>
     <script src="crud-ajax/list-stud.js"></script>
+    <script src="crud-ajax/post-notif.js"></script>
     
 
     
