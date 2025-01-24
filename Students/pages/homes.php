@@ -9,15 +9,11 @@
         </div>
         <!-- Notification Container -->
         <div class="studnotification-container mt-4" style="border: 1px solid #007bff; padding: 10px; border-radius: 5px;">
-            <!-- Sample Notification Message -->
-            <div class="sudalert alert-info" role="alert">
-                This is a sample notification message.
-            </div>
+            <!-- Notifications will be injected here via JS -->
         </div>
         <div class="navigation">
             <button class="prev" onclick="prevSlide()">❮</button>
             <button class="next" onclick="nextSlide()">❯</button>
         </div>
     </div>
-    <desc></desc>
 </div>

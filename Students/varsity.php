@@ -96,6 +96,8 @@
     <script src="./crud/slider.js"></script>
     <script src="./crud/storckchart.js"></script>
 
+    <!-- active CRUD AJAX FUNCTIONS -->
+    <script src="crud/notifications.js"></script>
     
 </body>
 </html>
