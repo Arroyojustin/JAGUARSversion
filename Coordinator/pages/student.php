@@ -3,7 +3,8 @@
         <div class="d-flex justify-content-between align-items-center flex-wrap">
             <div class="d-flex align-items-center gap-2">
                 <div class="d-flex align-items-center">
-                    <select id="student-lists-pageLengthSelect" class="form-select form-select-sm custom-select" aria-label="Page length selector">
+                    <select id="student-lists-pageLengthSelect" class="form-select form-select-sm custom-select"
+                        aria-label="Page length selector">
                         <option value="10">10</option>
                         <option value="25">25</option>
                         <option value="50">50</option>
@@ -12,7 +13,8 @@
                 </div>
                 <div class="d-flex align-items-center">
                     <!-- New select element for sports -->
-                    <select id="student-lists-sportSelect" class="form-select form-select-sm custom-select" aria-label="Sport selector">
+                    <select id="student-lists-sportSelect" class="form-select form-select-sm custom-select"
+                        aria-label="Sport selector">
                         <option value="" selected>All Sports</option>
                         <!-- Sports options will be populated dynamically via AJAX -->
                     </select>

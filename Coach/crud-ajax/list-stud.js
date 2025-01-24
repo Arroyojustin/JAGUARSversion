@@ -252,6 +252,7 @@
 //             .catch(error => console.error("Error updating scholarship info:", error));
 //     });
 // });
+
 document.addEventListener("DOMContentLoaded", function () {
     const tableBody = document.getElementById("student-table-body");
 
