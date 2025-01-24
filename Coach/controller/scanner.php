@@ -6,20 +6,21 @@ include('../../dbconn.php');
 if (isset($_POST['student_id'])) {
     $studentId = $_POST['student_id'];
 
-    // Use prepared statements to insert the attendance data
+    // Use the database connection from dbconn.php
+    // Assuming $conn is the database connection variable in dbconn.php
+
+    // Insert attendance data into the database
     $stmt = $conn->prepare("INSERT INTO attendance (student_id, timestamp) VALUES (?, NOW())");
     $stmt->bind_param("s", $studentId);
 
-    // Execute the query and check if it was successful
     if ($stmt->execute()) {
         echo "Attendance marked successfully!";
     } else {
         echo "Error marking attendance: " . $stmt->error;
     }
 
-    // Close the statement and connection
+    // Close the statement (optional as it's done automatically after the script ends)
     $stmt->close();
-    $conn->close();
 } else {
     echo "No student ID provided.";
 }
