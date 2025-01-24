@@ -1,44 +1,40 @@
- // Function to initialize the QR Scanner
- function startQRScanner() {
-    // Select the video element where the camera feed will be shown
-    const videoElem = document.getElementById('qr-video');
-    
-    // Create an instance of the QR scanner with a callback to handle the scanned result
-    const qrScanner = new QrScanner(videoElem, result => {
-        // Display the result from the QR code scan
-        document.getElementById('scan-result').innerText = `Student ID: ${result}`;
+// Initialize the QR Code scanner
+function startQRCodeScanner() {
+    const qrCodeReader = new Html5Qrcode("qr-reader");
 
-        // Send the scanned student ID to the server
-        markAttendance(result);
+    // Start scanning
+    qrCodeReader.start(
+        { facingMode: "environment" }, // Use the rear camera
+        {
+            fps: 10,  // Frames per second
+            qrbox: 250 // The size of the scanning box
+        },
+        (decodedText, decodedResult) => {
+            // Handle the QR code result here
+            console.log(decodedText);  // For debugging
+
+            // Example: If you want to log the student ID based on QR code data
+            // You can call a function here to mark attendance
+            markAttendance(decodedText);
+        },
+        (errorMessage) => {
+            console.error(errorMessage); // In case of error
+        }
+    ).catch((err) => {
+        console.error(err); // If scanning fails
     });
-
-    // Start the camera for scanning QR codes
-    qrScanner.start();
 }
 
-// Function to send the student ID to the server and mark attendance
+// Example function to mark attendance (this can be expanded as needed)
 function markAttendance(studentId) {
-    // Create a FormData object to send the student ID to the server via POST
-    const formData = new FormData();
-    formData.append('student_id', studentId);
-
-    // Use Fetch API to send a POST request to the server
-    fetch('controller/scanner.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.text()) // Get the response text
-    .then(data => {
-        // Display the server's response (Success or Error message)
-        alert(data);
-    })
-    .catch(error => {
-        console.error('Error marking attendance:', error);
-        alert('Error marking attendance.');
-    });
+    alert("Attendance marked for student ID: " + studentId);
 }
 
-// Start the QR scanner when the page is loaded
-window.onload = function() {
-    startQRScanner();
-};
+// Call this function when the section is shown
+function showScanner() {
+    document.getElementById("scanners").style.display = "block";  // Show scanner section
+    startQRCodeScanner();  // Start scanning
+}
+
+// Show the scanner when needed
+showScanner();
