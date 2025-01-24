@@ -32,7 +32,7 @@
 
     // Mark attendance via AJAX request
     function markAttendance(qrCodeData) {
-        fetch('controller/scanner.php', {
+        fetch('.../controller/scanner.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ qrCode: qrCodeData })
